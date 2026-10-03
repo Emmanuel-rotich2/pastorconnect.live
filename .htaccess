@@ -1,0 +1,60 @@
+Options -Indexes
+DirectoryIndex index.php
+RewriteEngine On
+
+# Basic security headers (only when supported by the host)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Never expose private application directories.
+RewriteRule ^(?:config|includes|database|storage|files|private|backups?)(?:/|$) - [F,L,NC]
+RewriteRule ^(?:\.git|\.svn|\.hg)(?:/|$) - [F,L,NC]
+RewriteRule ^(?:\.env(?:\..*)?|.*\.(?:sql|log|bak|old|orig|save|swp|tmp|ini|conf|dist))$ - [F,L,NC]
+
+# Public clean routes.
+RewriteRule ^auth/login/?$ auth/login.php [L,QSA]
+RewriteRule ^auth/register/?$ auth/register.php [L,QSA]
+RewriteRule ^auth/logout/?$ auth/logout.php [L,QSA]
+RewriteRule ^staff/login/?$ staff/login.php [L,QSA]
+RewriteRule ^staff/dashboard/?$ staff/dashboard.php [L,QSA]
+RewriteRule ^staff/appointments/?$ staff/appointments.php [L,QSA]
+RewriteRule ^staff/notifications/?$ staff/notifications.php [L,QSA]
+RewriteRule ^staff/calendar/?$ staff/calendar.php [L,QSA]
+RewriteRule ^staff/availability/?$ staff/availability.php [L,QSA]
+RewriteRule ^staff/communications/?$ staff/communications.php [L,QSA]
+RewriteRule ^staff/events/?$ staff/events.php [L,QSA]
+RewriteRule ^staff/members/?$ staff/members.php [L,QSA]
+RewriteRule ^staff/reports/?$ staff/reports.php [L,QSA]
+RewriteRule ^staff/change_password/?$ staff/change_password.php [L,QSA]
+RewriteRule ^staff/settings/?$ staff/settings.php [L,QSA]
+RewriteRule ^staff/logout/?$ staff/logout.php [L,QSA]
+RewriteRule ^staff/verify_login/?$ staff/verify_login.php [L,QSA]
+RewriteRule ^staff/resend_login_otp/?$ staff/resend_login_otp.php [L,QSA]
+RewriteRule ^staff/forgot_password/?$ staff/forgot_password.php [L,QSA]
+RewriteRule ^staff/verify_reset_code/?$ staff/verify_reset_code.php [L,QSA]
+RewriteRule ^staff/reset_password/?$ staff/reset_password.php [L,QSA]
+RewriteRule ^member/dashboard/?$ member/dashboard.php [L,QSA]
+RewriteRule ^member/book/?$ member/book.php [L,QSA]
+RewriteRule ^member/appointments/?$ member/appointments.php [L,QSA]
+RewriteRule ^member/announcements/?$ member/announcements.php [L,QSA]
+RewriteRule ^member/events/?$ member/events.php [L,QSA]
+RewriteRule ^member/notifications/?$ member/notifications.php [L,QSA]
+RewriteRule ^member/reports/?$ member/reports.php [L,QSA]
+RewriteRule ^member/profile/?$ member/profile.php [L,QSA]
+RewriteRule ^api/settings/?$ api/settings.php [L,QSA]
+RewriteRule ^api/availability/?$ api/availability.php [L,QSA]
+
+# Do not expose PHP controllers directly. Use a 404 rather than Apache's 403
+# so shared-hosting authorization modules are less likely to interfere.
+RewriteCond %{THE_REQUEST} \s/+[^\s?]*\.php(?:[\s?]) [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php$ [NC]
+RewriteRule ^ - [R=404,L]
+
+<FilesMatch "(?:~$|\.swp$|\.tmp$|\.bak$|\.old$|\.orig$|\.save$)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>

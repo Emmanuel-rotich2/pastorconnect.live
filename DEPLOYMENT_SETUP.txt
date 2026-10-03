@@ -1,0 +1,41 @@
+FGCK JOYLAND - FINAL DEPLOYMENT SETUP
+=====================================
+
+1. Upload the contents of this package into the domain public_html.
+2. Use folder permissions 755 and file permissions 644.
+3. Keep config/, includes/ and database/ protected; direct PHP access is blocked by .htaccess.
+4. Configure these server environment variables in Plesk/domain PHP settings:
+
+DATABASE
+FGCK_DB_HOST=localhost
+FGCK_DB_PORT=3306
+FGCK_DB_NAME=YOUR_EXISTING_DATABASE
+FGCK_DB_USER=YOUR_EXISTING_DATABASE_USER
+FGCK_DB_PASSWORD=YOUR_EXISTING_DATABASE_PASSWORD
+
+EMAIL (recommended SMTP)
+FGCK_EMAIL_ENABLED=true
+FGCK_SMTP_HOST=smtp.gmail.com
+FGCK_SMTP_PORT=587
+FGCK_SMTP_ENCRYPTION=tls
+FGCK_SMTP_USERNAME=YOUR_EMAIL_ADDRESS
+FGCK_SMTP_PASSWORD=YOUR_GOOGLE_APP_PASSWORD
+FGCK_EMAIL_FROM=YOUR_EMAIL_ADDRESS
+FGCK_EMAIL_FROM_NAME=FGCK Joyland Pastor Portal
+FGCK_EMAIL_REPLY_TO=YOUR_EMAIL_ADDRESS
+FGCK_APP_URL=https://pastorconnect.live
+
+If SMTP username/password are omitted, the application will attempt the hosting provider's PHP mail() service using noreply@pastorconnect.live. This depends on the host mail service and DNS/mail configuration. SMTP is more predictable.
+
+5. Make sure the pastor/admin user's email field contains the real email address that should receive login codes.
+6. Make sure the staff_login_otps table exists. If not, import database/migration_staff_login_otp.sql.
+7. Test:
+   https://pastorconnect.live/staff/login
+
+Login flow:
+   credentials -> email OTP -> /staff/verify_login -> /staff/dashboard
+
+IMPORTANT
+- Never put a Gmail normal password in the application. Use a Google App Password.
+- Never commit real database or SMTP credentials to the ZIP or source repository.
+- The package intentionally contains no production credentials.

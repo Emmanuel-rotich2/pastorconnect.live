@@ -1,0 +1,22 @@
+<?php
+
+return [
+    'database' => [
+        'host' => 'localhost',
+        'name' => 'your_database_name',
+        'username' => 'your_database_user',
+        'password' => 'your_database_password',
+    ],
+    'email' => [
+        'enabled' => false,
+        'smtp_host' => 'smtp.gmail.com',
+        'smtp_port' => 587,
+        'smtp_encryption' => 'tls',
+        'smtp_username' => 'your_email@example.com',
+        'smtp_password' => 'your_email_app_password',
+        'from_email' => 'your_email@example.com',
+        'from_name' => 'FGCK Joyland Appointment System',
+        'reply_to' => 'your_email@example.com',
+        'base_url' => 'http://localhost/fgck_joyland',
+    ],
+];

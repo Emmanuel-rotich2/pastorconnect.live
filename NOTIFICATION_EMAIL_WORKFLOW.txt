@@ -1,0 +1,32 @@
+FGCK MAKUTANO WEST JOYLAND – NOTIFICATION & EMAIL WORKFLOW
+
+1. MEMBER BOOKS AN APPOINTMENT
+- The appointment is saved in MySQL.
+- Every active pastor receives an in-system notification in Pastor Portal > Notifications.
+- Every active pastor with a valid email receives a professional email containing member name, phone, email, date, time, purpose and appointment reference.
+
+2. PASTOR UPDATES AN APPOINTMENT
+- The member receives an in-system notification.
+- The member receives an email for confirmation, decline, cancellation, completion or no-show.
+- Appointment time changes can be emailed using the existing time-change helper.
+
+3. PASTOR PUBLISHES A MESSAGE
+- Published pastoral announcements, prayer messages, reminders and urgent notices are inserted into member notifications.
+- Members can read them in Member Portal > Church Messages.
+- Members with valid email addresses also receive the same communication by email with a reminder to log in.
+- Draft messages are never emailed.
+
+4. PASTOR PUBLISHES A CHURCH EVENT
+- Members receive an in-system notification.
+- The event appears in Member Portal > Events.
+- All active members with valid email addresses receive the event details by email.
+- Event cancellation creates an in-system notification and sends an email cancellation notice.
+
+5. IMPORTANT EMAIL SETUP
+- Configure config/email.php with valid SMTP details.
+- Gmail requires a Google App Password, not the normal Gmail password.
+- EMAIL_BASE_URL should be changed from localhost when the system is deployed online.
+
+6. SECURITY
+- Do not commit config/email.php to a public Git repository.
+- If an App Password has ever been exposed, revoke it in Google and create a replacement.
