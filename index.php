@@ -1715,7 +1715,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
                 class="fw-bold"
             >
 
-                Meet the Pastor for prayer
+                Meet the Pastor for prayer,
 
                 <span
                     class="highlight"
