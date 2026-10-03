@@ -715,10 +715,6 @@ require __DIR__ . '/../includes/header.php';
                         <span>Stay connected with pastoral ministry</span>
                     </div>
                     <div class="fgck-benefit">
-                        <span class="fgck-benefit-icon"><i class="bi bi-shield-check"></i></span>
-                        <span>Your account is securely protected</span>
-                    </div>
-                    <div class="fgck-benefit">
                         <span class="fgck-benefit-icon"><i class="bi bi-stars"></i></span>
                         <span>Be part of a connected church community</span>
                     </div>
