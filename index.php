@@ -1335,6 +1335,382 @@ require_once __DIR__ . '/includes/bootstrap.php';
             }
         }
 
+
+        /* =====================================================
+           ENHANCED MOBILE RESPONSIVENESS
+           Optimized for phones, tablets and touch screens
+        ====================================================== */
+
+        /* Prevent accidental horizontal overflow */
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        /* Better touch targets */
+        .btn,
+        .mobile-menu-button button,
+        .offcanvas .btn {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Tablet and phones */
+        @media (max-width: 991.98px) {
+
+            .landing-nav {
+                padding: 9px 0;
+            }
+
+            .landing-nav > .container {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .brand-wrapper {
+                min-width: 0;
+                max-width: calc(100% - 58px);
+            }
+
+            .brand-wrapper > div:last-child {
+                min-width: 0;
+            }
+
+            .mobile-menu-button {
+                flex-shrink: 0;
+            }
+
+            .mobile-menu-button .btn {
+                width: 46px;
+                height: 44px;
+                padding: 0;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero {
+                width: 100%;
+                min-height: auto;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero h1,
+            .hero-description,
+            .hero-badge,
+            .hero-buttons,
+            .features,
+            .trust-line {
+                max-width: 100%;
+            }
+
+            .feature {
+                overflow-wrap: anywhere;
+            }
+        }
+
+        /* Phones */
+        @media (max-width: 767.98px) {
+
+            .landing-nav {
+                position: sticky;
+                top: 0;
+            }
+
+            .landing-nav > .container {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .brand-logo {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+                border-radius: 10px;
+            }
+
+            .brand-logo img {
+                padding: 3px;
+            }
+
+            .brand-name {
+                max-width: calc(100vw - 105px);
+                font-size: 12.5px;
+                line-height: 1.2;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .brand-subtitle {
+                max-width: calc(100vw - 105px);
+                font-size: 8.5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .hero {
+                padding-left: 14px;
+                padding-right: 14px;
+                padding-top: 42px;
+                padding-bottom: 42px;
+            }
+
+            .hero::before {
+                width: 260px;
+                height: 260px;
+                left: -170px;
+                top: 30px;
+            }
+
+            .hero::after {
+                width: 260px;
+                height: 260px;
+                right: -170px;
+                bottom: 10px;
+            }
+
+            .hero-badge {
+                display: flex;
+                width: fit-content;
+                max-width: 100%;
+                margin: 0 auto 20px;
+                padding: 8px 11px;
+                font-size: 9.5px;
+                line-height: 1.35;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .hero h1 {
+                width: 100%;
+                margin-bottom: 17px;
+                font-size: clamp(1.85rem, 9vw, 2.45rem);
+                line-height: 1.12;
+                letter-spacing: -0.7px;
+                overflow-wrap: break-word;
+            }
+
+            .hero-description {
+                width: 100%;
+                padding: 0 2px;
+                font-size: 14px;
+                line-height: 1.65;
+            }
+
+            .hero-buttons {
+                width: 100%;
+                margin-top: 25px;
+                gap: 10px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 100%;
+                min-height: 52px;
+                padding: 13px 16px;
+                font-size: 14px;
+                border-radius: 12px;
+            }
+
+            .features {
+                width: 100%;
+                margin-top: 34px;
+            }
+
+            .feature {
+                width: 100%;
+                min-height: auto;
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .feature-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 14px;
+                border-radius: 13px;
+                font-size: 21px;
+            }
+
+            .feature h3 {
+                font-size: 16px;
+                line-height: 1.35;
+            }
+
+            .feature p {
+                font-size: 13.5px;
+                line-height: 1.65;
+            }
+
+            .trust-line {
+                margin-top: 25px;
+                padding: 0 8px;
+                font-size: 10.5px;
+                line-height: 1.8;
+            }
+
+            .landing-footer {
+                padding: 23px 12px;
+                font-size: 11.5px;
+                line-height: 1.7;
+            }
+
+            .offcanvas {
+                width: min(88vw, 360px) !important;
+            }
+
+            .offcanvas-body {
+                padding: 20px 16px;
+            }
+
+            .offcanvas .btn {
+                min-height: 52px;
+                font-size: 14px;
+            }
+
+            .mobile-info-card {
+                padding: 16px;
+            }
+        }
+
+        /* Very small phones: 320px–375px */
+        @media (max-width: 380px) {
+
+            .landing-nav > .container {
+                padding-left: 9px;
+                padding-right: 9px;
+            }
+
+            .brand-logo {
+                width: 37px;
+                height: 37px;
+                min-width: 37px;
+            }
+
+            .brand-name {
+                max-width: calc(100vw - 91px);
+                font-size: 11.5px;
+            }
+
+            .brand-subtitle {
+                display: none;
+            }
+
+            .mobile-menu-button .btn {
+                width: 42px;
+                height: 40px;
+            }
+
+            .hero {
+                padding-left: 11px;
+                padding-right: 11px;
+                padding-top: 35px;
+                padding-bottom: 35px;
+            }
+
+            .hero-badge {
+                font-size: 8.5px;
+                padding: 7px 9px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+                line-height: 1.13;
+            }
+
+            .hero-description {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .hero-buttons .btn {
+                min-height: 50px;
+                font-size: 13px;
+            }
+
+            .feature {
+                padding: 17px;
+            }
+
+            .feature h3 {
+                font-size: 15px;
+            }
+
+            .feature p {
+                font-size: 12.5px;
+            }
+
+            .trust-line {
+                font-size: 9.5px;
+            }
+        }
+
+        /* Landscape phones */
+        @media (max-width: 767.98px) and (orientation: landscape) {
+
+            .hero {
+                padding-top: 30px;
+                padding-bottom: 35px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .hero-buttons .btn {
+                width: auto;
+                min-width: 180px;
+            }
+        }
+
+        /* Avoid fixed-background performance problems on mobile */
+        @media (hover: none) and (pointer: coarse) {
+
+            body.landing {
+                background-attachment: scroll;
+            }
+
+            .feature:hover,
+            .hero-buttons .btn:hover,
+            .nav-actions .btn:hover {
+                transform: none;
+            }
+        }
+
+        /* Safe-area support for modern phones */
+        @supports (padding: max(0px)) {
+
+            .landing-nav > .container {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+
+            .landing-footer {
+                padding-bottom: max(23px, env(safe-area-inset-bottom));
+            }
+        }
+
     </style>
 
 </head>
@@ -1983,8 +2359,5 @@ require_once __DIR__ . '/includes/bootstrap.php';
 <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 ></script>
-
-
 </body>
-
 </html>
