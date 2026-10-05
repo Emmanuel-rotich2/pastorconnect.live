@@ -1,0 +1,17 @@
+FGCK JOYLAND — CHURCH PICTURES & PASTOR NOTES
+================================================
+
+Added:
+- Pastor Portal > Homepage Content now includes "Church Pictures & Pastor's Notes".
+- Pastor can upload JPG, PNG or WEBP images up to 8 MB.
+- Pastor can add an optional title and a note up to 5,000 characters.
+- Published updates appear automatically on the public homepage.
+- Pastor can remove previously published updates.
+- Homepage shows the latest 6 published church updates.
+- Uploads are stored in /uploads/church_updates/ and PHP/script execution is blocked there.
+
+DATABASE:
+Run database/migration_pastor_homepage_content.sql in the existing FGCK Joyland database.
+The migration creates the homepage_church_updates table.
+
+No existing homepage mission, vision, motto, theme, or daily quote content is removed.

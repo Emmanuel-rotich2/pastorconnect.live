@@ -9,6 +9,12 @@ $homepageTheme=setting($pdo,'homepage_theme_year','');
 $homepageQuote=setting($pdo,'homepage_daily_quote','');
 $homepageQuoteImage=setting($pdo,'homepage_daily_quote_image','');
 $homepageQuoteDate=setting($pdo,'homepage_daily_quote_date','');
+$homepageChurchUpdates=[];
+try{
+    $uq=$pdo->query("SELECT id,title,note,image_path,published_at FROM homepage_church_updates WHERE status='published' ORDER BY published_at DESC,id DESC LIMIT 6");
+    $homepageChurchUpdates=$uq?$uq->fetchAll():[];
+}catch(Throwable $e){ $homepageChurchUpdates=[]; }
+
 ?>
 
 <!doctype html>
@@ -2018,6 +2024,23 @@ body{
 @media(max-width:576px){.fgck-pastor-content{width:calc(100% - 1rem)}.fgck-pastor-grid{grid-template-columns:1fr}.fgck-daily-quote-copy{padding:1.5rem}.fgck-daily-quote-image,.fgck-daily-quote-image img{min-height:200px}}
 
 
+/* Pastor church photo updates */
+.fgck-church-updates{margin-top:1.2rem}
+.fgck-church-updates-head{text-align:left;margin-bottom:1.2rem}
+.fgck-church-updates-head span{font-size:.72rem;font-weight:900;letter-spacing:.14em;color:#4f46e5}
+.fgck-church-updates-head h2{margin:.45rem 0 .35rem;font-size:clamp(1.35rem,2.8vw,2rem);color:#172033}
+.fgck-church-updates-head p{margin:0;color:#64748b;line-height:1.6}
+.fgck-church-updates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.fgck-church-update-card{overflow:hidden;border-radius:22px;background:rgba(255,255,255,.88);border:1px solid rgba(148,163,184,.2);box-shadow:0 14px 36px rgba(15,23,42,.07)}
+.fgck-church-update-card img{width:100%;height:220px;object-fit:cover;display:block}
+.fgck-church-update-body{padding:1.15rem 1.2rem 1.3rem}
+.fgck-church-update-date{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.fgck-church-update-body h3{margin:.45rem 0 .55rem;font-size:1.05rem;color:#172033}
+.fgck-church-update-body p{margin:0;color:#526174;line-height:1.7;font-size:.92rem}
+@media(max-width:900px){.fgck-church-updates-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:576px){.fgck-church-updates-grid{grid-template-columns:1fr}.fgck-church-update-card img{height:210px}}
+
+
 /* Dynamic motivation cards */
 .fgck-random-motivation{display:none;opacity:0;transform:translateY(8px)}
 .fgck-random-motivation.fgck-random-visible{
@@ -2248,7 +2271,7 @@ main, .main-content, .container{
 
 </nav>
 
-<section class="fgck-premium-hero" aria-label="FGCK Joyland welcome">
+<section id="home" class="fgck-premium-hero" aria-label="FGCK Joyland welcome">
   <div class="fgck-premium-orb fgck-orb-one"></div>
   <div class="fgck-premium-orb fgck-orb-two"></div>
   <div class="fgck-premium-hero-inner">
@@ -2263,7 +2286,7 @@ main, .main-content, .container{
 </section>
 
 <?php if($homepageMission || $homepageVision || $homepageMotto || $homepageTheme || $homepageQuote || $homepageQuoteImage): ?>
-<section class="fgck-pastor-content" aria-label="Church message">
+<section id="our-church" class="fgck-pastor-content" aria-label="Church message">
   <div class="fgck-pastor-content-head">
     <span>FROM THE PASTOR</span>
     <h2>What guides us. What inspires us. What we are becoming.</h2>
@@ -2286,7 +2309,30 @@ main, .main-content, .container{
 </section>
 <?php endif; ?>
 
-<section class="fgck-three-inspiration" aria-label="Inspirational messages">
+
+<?php if($homepageChurchUpdates): ?>
+<section class="fgck-modern-section fgck-church-updates" id="church-updates" aria-label="Church pictures and pastor's notes">
+  <div class="fgck-church-updates-head">
+    <span>FROM CHURCH LIFE</span>
+    <h2>Church Moments & Pastor's Notes</h2>
+    <p>See recent moments from FGCK Joyland and read a note from the pastor.</p>
+  </div>
+  <div class="fgck-church-updates-grid">
+    <?php foreach($homepageChurchUpdates as $update): ?>
+      <article class="fgck-church-update-card">
+        <img src="<?=e($update['image_path'])?>" alt="<?=e($update['title']?:'FGCK Joyland church update')?>" loading="lazy">
+        <div class="fgck-church-update-body">
+          <div class="fgck-church-update-date"><i class="bi bi-calendar3 me-1"></i><?=e(date('F j, Y',strtotime($update['published_at'])))?></div>
+          <?php if($update['title']): ?><h3><?=e($update['title'])?></h3><?php endif; ?>
+          <p><?=nl2br(e($update['note']))?></p>
+        </div>
+      </article>
+    <?php endforeach; ?>
+  </div>
+</section>
+<?php endif; ?>
+
+<section id="inspiration" class="fgck-three-inspiration" aria-label="Inspirational messages">
   <div class="fgck-three-heading">
     <span>DAILY ENCOURAGEMENT</span>
     <h2>Words to strengthen your faith and inspire your journey.</h2>
@@ -2492,148 +2538,64 @@ main, .main-content, .container{
 
 
     <div
-        class="offcanvas-body"
+        class="offcanvas-body homepage-mobile-nav"
     >
 
-
-        <!-- MOBILE BUTTONS -->
-
-        <div
-            class="d-grid gap-3"
-        >
-
-
-            <a
-                href="/auth/login"
-                class="btn btn-outline-light btn-lg"
-            >
-
-                <i
-                    class="bi bi-box-arrow-in-right me-2"
-                ></i>
-
-                Sign In
-
-            </a>
-
-
-            <a
-                href="/auth/register"
-                class="btn btn-success btn-lg"
-            >
-
-                <i
-                    class="bi bi-person-plus me-2"
-                ></i>
-
-                Create Member Account
-
-            </a>
-
-</div>
-
-
-        <hr
-            class="border-secondary my-4"
-        >
-
-
-        <!-- INFORMATION CARD -->
-
-        <div
-            class="mobile-info-card"
-        >
-
-            <div
-                class="d-flex gap-3"
-            >
-
-                <div>
-
-                    <i
-                        class="bi bi-calendar2-check text-warning fs-4"
-                    ></i>
-
-                </div>
-
-
-                <div>
-
-                    <div
-                        class="fw-bold text-white mb-1"
-                    >
-
-                        Pastor Appointments
-
-                    </div>
-
-
-                    <div
-                        class="text-secondary small"
-                    >
-
-                        Book a private 30-minute appointment
-                        through the FGCK Joyland member portal.
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="mobile-nav-intro">
+            <span class="mobile-nav-kicker">FGCK JOYLAND</span>
+            <h2>Welcome to our church family</h2>
+            <p>Faith, fellowship and a connected church community.</p>
         </div>
 
+        <nav class="mobile-home-links" aria-label="Homepage navigation">
+            <a href="#home" class="mobile-home-link">
+                <span class="mobile-home-link-icon"><i class="bi bi-house-heart"></i></span>
+                <span>
+                    <strong>Home</strong>
+                    <small>Welcome page</small>
+                </span>
+                <i class="bi bi-chevron-right mobile-home-arrow"></i>
+            </a>
 
-        <!-- SECOND INFORMATION CARD -->
+            <a href="#our-church" class="mobile-home-link">
+                <span class="mobile-home-link-icon"><i class="bi bi-building"></i></span>
+                <span>
+                    <strong>Our Church</strong>
+                    <small>Mission, vision and direction</small>
+                </span>
+                <i class="bi bi-chevron-right mobile-home-arrow"></i>
+            </a>
 
-        <div
-            class="mobile-info-card mt-3"
-        >
+            <a href="#inspiration" class="mobile-home-link">
+                <span class="mobile-home-link-icon"><i class="bi bi-stars"></i></span>
+                <span>
+                    <strong>Inspiration</strong>
+                    <small>Daily encouragement and Scripture</small>
+                </span>
+                <i class="bi bi-chevron-right mobile-home-arrow"></i>
+            </a>
+        </nav>
 
-            <div
-                class="d-flex gap-3"
-            >
+        <div class="mobile-home-actions">
+            <a href="/auth/login" class="mobile-home-action mobile-home-action-primary">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Sign In</span>
+            </a>
 
-                <div>
+            <a href="/auth/register" class="mobile-home-action mobile-home-action-secondary">
+                <i class="bi bi-person-plus"></i>
+                <span>Create Member Account</span>
+            </a>
+        </div>
 
-                    <i
-                        class="bi bi-shield-check text-info fs-4"
-                    ></i>
-
-                </div>
-
-
-                <div>
-
-                    <div
-                        class="fw-bold text-white mb-1"
-                    >
-
-                        Private & Secure
-
-                    </div>
-
-
-                    <div
-                        class="text-secondary small"
-                    >
-
-                        Your appointment details are protected
-                        within your member account.
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="mobile-home-footer">
+            <span><i class="bi bi-shield-check"></i> Secure church portal</span>
+            <span><i class="bi bi-heart"></i> FGCK Joyland</span>
         </div>
 
     </div>
 
 </div>
-
-
 
 <!-- =========================================================
      MAIN CONTENT

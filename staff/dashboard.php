@@ -25,7 +25,7 @@ $page_title='Pastor Dashboard';require __DIR__.'/../includes/header.php';?>
                     <h1>Pastor Dashboard</h1>
                     <p>Live appointment operations, member activity and service insights.</p>
                 </div>
-            </div><div class="d-flex gap-2 flex-wrap"><a href="/staff/download-members" class="btn btn-outline-primary btn-sm"><i class="bi bi-download me-1"></i>Download Members</a><span class="live-pill">Live operations</span></div>
+            </div><div class="d-flex gap-2 flex-wrap"><span class="live-pill">Live operations</span></div>
         </header>
         <div class="content">
             <div class="welcome mb-4">

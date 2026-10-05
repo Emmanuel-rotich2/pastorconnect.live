@@ -1371,3 +1371,427 @@ body:has(.staff-sidebar) .main {
 .staff-top-logout-btn:hover,.staff-top-logout-btn:focus{color:#fff;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);text-decoration:none;transform:translateY(-1px);}
 .staff-top-logout-btn i{font-size:13px;}
 @media(max-width:576px){.staff-top-logout{top:10px;right:10px}.staff-top-logout-btn{padding:8px 9px}.staff-top-logout-btn span{display:none}}
+
+/* FGCK MOBILE RESPONSIVE SYSTEM - 2026 */
+
+/* FGCK MOBILE RESPONSIVE SYSTEM - 2026 */
+html, body { max-width:100%; overflow-x:hidden; }
+img, svg, video, canvas { max-width:100%; height:auto; }
+button, input, select, textarea { max-width:100%; }
+.form-control, .form-select, .input-group { min-width:0; }
+.cardx, .welcome, .analytics-card, .auth-card, .modal-content { max-width:100%; }
+.table-responsive { width:100%; overflow-x:auto; }
+.table-responsive table { width:100%; }
+
+@media (max-width: 900px) {
+    body:has(.sidebar) .main { margin-left:0 !important; width:100%; }
+    .sidebar { width:min(292px, 88vw); max-width:88vw; }
+    .topbar { width:100%; }
+    .topbar > .d-flex, .topbar > div:first-child { min-width:0; }
+    .topbar h1, .topbar p { overflow-wrap:anywhere; }
+    .topbar > .live-pill { flex:0 0 auto; }
+    .content { width:100%; max-width:100%; }
+    .row { --bs-gutter-x: .85rem; }
+    .cardx { overflow:hidden; }
+    .btn { white-space:normal; }
+    .modal-dialog { max-width:calc(100% - 20px); }
+}
+
+@media (max-width: 767px) {
+    .topbar { flex-wrap:wrap; align-items:center; }
+    .topbar > .d-flex:last-child,
+    .topbar > form,
+    .topbar > a,
+    .topbar > .btn,
+    .topbar > .live-pill { margin-left:auto; }
+    .topbar p { margin-bottom:0; }
+    .content { padding-left:12px; padding-right:12px; }
+    .welcome .d-flex { align-items:flex-start !important; }
+    .welcome .btn { width:100%; }
+    .analytics-head, .d-flex.justify-content-between { flex-wrap:wrap; }
+    .cardx.p-4 { padding:1rem !important; }
+    .cardx.p-5 { padding:1.25rem !important; }
+    .table-clean td, .table-clean th { padding:10px 8px; }
+    .table-responsive table { min-width:620px; }
+    .table-responsive.table-mobile-fit table { min-width:0; }
+    .dropdown-menu { max-width:calc(100vw - 24px); }
+    .modal-body { max-height:65vh; overflow-y:auto; }
+    textarea.form-control { min-height:110px; }
+    .nav-count { flex:0 0 auto; }
+}
+
+@media (max-width: 576px) {
+    .sidebar { width:86vw; max-width:300px; }
+    .brand { padding-left:7px; padding-right:7px; }
+    .brand strong { font-size:14px; }
+    .sidebar nav a, .logout { min-height:46px; padding:11px 10px; }
+    .topbar { padding:10px 12px; }
+    .topbar .menu-btn { width:42px; height:42px; flex:0 0 42px; }
+    .topbar > .live-pill { font-size:9px; }
+    .topbar .btn { width:auto; max-width:100%; }
+    .content { padding:10px 9px 24px; }
+    .welcome { padding:18px !important; }
+    .welcome h2 { font-size:20px; line-height:1.25; }
+    .stat, .kpi-modern { min-width:0; }
+    .form-label { font-size:12px; }
+    .form-control, .form-select { min-height:44px; }
+    .btn { min-height:42px; }
+    .btn-sm { min-height:38px; }
+    .btn-group, .d-flex.gap-2 { flex-wrap:wrap; }
+    .btn-group > .btn { flex:1 1 auto; }
+    .row.g-4, .row.g-3 { --bs-gutter-y: .75rem; }
+    .table-responsive table { min-width:580px; }
+    .auth-card { width:calc(100vw - 18px); max-width:100%; }
+    .staff-sidebar-top-account { right:8px !important; }
+    .staff-sidebar-top-account .staff-profile-menu { max-width:calc(100vw - 16px) !important; }
+}
+
+@media (max-width: 380px) {
+    .sidebar { width:92vw; }
+    .topbar h1 { font-size:15px; }
+    .topbar p { font-size:9px; }
+    .content { padding-left:7px; padding-right:7px; }
+    .welcome { padding:15px !important; }
+    .welcome h2 { font-size:18px; }
+    .cardx.p-4 { padding:.85rem !important; }
+    .table-responsive table { min-width:540px; }
+}
+
+
+/* =========================================================
+   FGCK JOYLAND HOMEPAGE — PREMIUM MOBILE NAVIGATION
+   ========================================================= */
+.homepage-mobile-nav {
+    padding: 24px 18px 20px !important;
+    background:
+        radial-gradient(circle at 85% 5%, rgba(41, 137, 220, .18), transparent 32%),
+        linear-gradient(180deg, #071827 0%, #0a1f32 48%, #06131f 100%);
+}
+
+.mobile-nav-intro {
+    padding: 2px 4px 22px;
+}
+
+.mobile-nav-kicker {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .18em;
+    color: #78c8ff;
+}
+
+.mobile-nav-intro h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.mobile-nav-intro p {
+    margin: 9px 0 0;
+    color: rgba(232, 244, 255, .68);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.mobile-home-links {
+    display: grid;
+    gap: 9px;
+}
+
+.mobile-home-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 66px;
+    padding: 10px 12px;
+    color: #fff !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.mobile-home-link:active,
+.mobile-home-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(93,183,245,.45);
+    background: linear-gradient(135deg, rgba(22,131,216,.18), rgba(255,255,255,.055));
+}
+
+.mobile-home-link-icon {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    color: #8fd4ff;
+    background: rgba(22,131,216,.16);
+    border: 1px solid rgba(93,183,245,.18);
+    font-size: 18px;
+}
+
+.mobile-home-link > span:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.mobile-home-link strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.mobile-home-link small {
+    display: block;
+    margin-top: 4px;
+    color: rgba(225,240,252,.57);
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.mobile-home-arrow {
+    color: rgba(255,255,255,.38);
+    font-size: 13px;
+}
+
+.mobile-home-actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.mobile-home-action {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 10px 15px;
+    border-radius: 14px;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 800;
+    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.mobile-home-action:active {
+    transform: scale(.985);
+}
+
+.mobile-home-action-primary {
+    color: #fff !important;
+    background: linear-gradient(135deg, #1683d8, #0b5d9f);
+    box-shadow: 0 10px 25px rgba(22,131,216,.28);
+}
+
+.mobile-home-action-secondary {
+    color: #eaf6ff !important;
+    border: 1px solid rgba(120,200,255,.30);
+    background: rgba(255,255,255,.055);
+}
+
+.mobile-home-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 22px;
+    padding: 14px 2px 2px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: rgba(225,240,252,.48);
+    font-size: 10px;
+}
+
+.mobile-home-footer span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.mobile-home-footer i {
+    color: #72c7ff;
+}
+
+@media (max-width: 575.98px) {
+    .landing-nav .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .landing-nav {
+        min-height: 68px;
+    }
+
+    .brand-wrapper {
+        min-width: 0;
+        gap: 9px !important;
+    }
+
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+        flex: 0 0 40px;
+    }
+
+    .brand-name {
+        max-width: 205px;
+        font-size: 12px;
+        line-height: 1.15;
+        white-space: normal;
+    }
+
+    .brand-subtitle {
+        font-size: 8px;
+        letter-spacing: .09em;
+        margin-top: 3px;
+    }
+
+    .mobile-menu-button .btn {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        border-color: rgba(255,255,255,.20);
+        background: rgba(255,255,255,.07);
+        box-shadow: 0 8px 22px rgba(0,0,0,.15);
+    }
+
+    .mobile-menu-button .bi {
+        font-size: 23px !important;
+    }
+
+    .offcanvas.offcanvas-end {
+        width: min(91vw, 390px);
+    }
+
+    .offcanvas-header {
+        padding: 17px 18px;
+        background: rgba(4,16,27,.96);
+    }
+
+    .offcanvas-title {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .brand-name {
+        max-width: 170px;
+        font-size: 11px;
+    }
+
+    .mobile-home-link {
+        min-height: 62px;
+    }
+
+    .mobile-home-link-icon {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .mobile-home-footer {
+        font-size: 9px;
+    }
+}
+
+
+/* =========================================================
+   FGCK JOYLAND HOMEPAGE — FIXED / STEADY HEADER
+   The navigation remains visible while the page scrolls.
+   ========================================================= */
+body:has(.landing-nav) {
+    --fgck-home-header-height: 76px;
+}
+
+body:has(.landing-nav) .landing-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1050 !important;
+    margin: 0 !important;
+    transform: none !important;
+    transition: box-shadow .25s ease, background-color .25s ease, border-color .25s ease !important;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+}
+
+/* Keep the homepage content below the fixed header. */
+body:has(.landing-nav) main,
+body:has(.landing-nav) .fgck-home-main,
+body:has(.landing-nav) .homepage-main,
+body:has(.landing-nav) .hero,
+body:has(.landing-nav) .fgck-premium-hero {
+    scroll-margin-top: calc(var(--fgck-home-header-height) + 12px);
+}
+
+/* If the hero is the first content directly after the header, add clearance. */
+body:has(.landing-nav) .fgck-premium-hero:first-child,
+body:has(.landing-nav) .landing-nav + .fgck-premium-hero,
+body:has(.landing-nav) .landing-nav ~ main:first-of-type {
+    padding-top: max(0px, var(--fgck-home-header-height));
+}
+
+/* Ensure anchor navigation does not hide sections behind the fixed header. */
+body:has(.landing-nav) [id] {
+    scroll-margin-top: calc(var(--fgck-home-header-height) + 14px);
+}
+
+/* Slightly stronger separation once the page is scrolled. */
+body:has(.landing-nav) .landing-nav {
+    box-shadow: 0 8px 28px rgba(5, 20, 35, .14);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+/* Mobile header remains fixed with the correct compact height. */
+@media (max-width: 575.98px) {
+    body:has(.landing-nav) {
+        --fgck-home-header-height: 68px;
+    }
+
+    body:has(.landing-nav) .landing-nav {
+        min-height: var(--fgck-home-header-height) !important;
+    }
+
+    body:has(.landing-nav) .fgck-premium-hero:first-child,
+    body:has(.landing-nav) .landing-nav + .fgck-premium-hero {
+        padding-top: var(--fgck-home-header-height);
+    }
+}
+
+
+/* Fallback selector for the homepage body class. */
+body.fgck-home-fixed-header {
+    --fgck-home-header-height: 76px;
+}
+
+body.fgck-home-fixed-header .landing-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1050 !important;
+    margin: 0 !important;
+}
+
+body.fgck-home-fixed-header [id] {
+    scroll-margin-top: calc(var(--fgck-home-header-height) + 14px);
+}
+
+@media (max-width: 575.98px) {
+    body.fgck-home-fixed-header {
+        --fgck-home-header-height: 68px;
+    }
+}
