@@ -41,7 +41,7 @@ $homepageQuoteDate=setting($pdo,'homepage_daily_quote_date','');
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon-256.png">
 
-    <title>FGCK Joyland | Connected Church</title>
+    <title>FGCK Joyland | perfected to influence</title>
 
 
     <!-- =====================================================
