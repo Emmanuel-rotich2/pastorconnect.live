@@ -1,4 +1,4 @@
-USE fgck_joyland;
+USE pastorco_fgck_joyland;
 
 -- Existing-installation migration: store Pastor time adjustments on the appointment itself.
 SET @db = DATABASE();

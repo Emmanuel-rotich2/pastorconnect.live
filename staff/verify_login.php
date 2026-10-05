@@ -171,6 +171,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['staff_id'] =
                         $u['id'];
 
+                    /*
+                     * Remember this browser for 2 hours.
+                     * The raw token is only stored in the browser; MySQL stores
+                     * only its SHA-256 hash.
+                     */
+                    $trustedToken = bin2hex(random_bytes(32));
+                    $trustedHash = hash('sha256', $trustedToken);
+                    $trustedExpires = time() + 7200;
+
+                    $pdo->prepare("
+                        DELETE FROM staff_trusted_logins
+                        WHERE user_id = ?
+                    ")->execute([(int)$u['id']]);
+
+                    $pdo->prepare("
+                        INSERT INTO staff_trusted_logins
+                            (user_id, token_hash, expires_at)
+                        VALUES (?, ?, FROM_UNIXTIME(?))
+                    ")->execute([
+                        (int)$u['id'],
+                        $trustedHash,
+                        $trustedExpires
+                    ]);
+
+                    $isHttps = (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off');
+                    setcookie('fgck_staff_trusted', $trustedToken, [
+                        'expires' => $trustedExpires,
+                        'path' => '/',
+                        'secure' => $isHttps,
+                        'httponly' => true,
+                        'samesite' => 'Lax',
+                    ]);
+
+                    $_SESSION['staff_otp_verified'] = true;
+                    $_SESSION['staff_login_verified_at'] = time();
+                    $_SESSION['staff_trusted_until'] = $trustedExpires;
 
                     /*
                      * Remove temporary login session.

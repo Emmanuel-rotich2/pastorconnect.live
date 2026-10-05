@@ -1,6 +1,22 @@
 <?php
 require __DIR__ . '/../includes/bootstrap.php';
 
+// Revoke the short-lived trusted-login token when the pastor explicitly logs out.
+$trustedCookie = $_COOKIE['fgck_staff_trusted'] ?? '';
+if ($trustedCookie !== '' && preg_match('/^[a-f0-9]{64}$/', $trustedCookie)) {
+    $pdo->prepare("DELETE FROM staff_trusted_logins WHERE token_hash = ?")
+        ->execute([hash('sha256', $trustedCookie)]);
+}
+
+$isHttps = (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off');
+setcookie('fgck_staff_trusted', '', [
+    'expires' => time() - 3600,
+    'path' => '/',
+    'secure' => $isHttps,
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
+
 // Clear all pastor authentication/verification session values.
 unset(
     $_SESSION['staff_id'],

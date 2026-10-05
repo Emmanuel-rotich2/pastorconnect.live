@@ -1,13 +1,14 @@
 <?php
-/**
- * FGCK Makutano West Joyland SMS configuration.
- *
- * This implementation uses Twilio for SMS delivery.
- * Create a Twilio account, obtain an Account SID/Auth Token,
- * and a Twilio phone number capable of sending SMS.
- */
-const SMS_ENABLED = false;
-const SMS_TWILIO_ACCOUNT_SID = 'YOUR_TWILIO_ACCOUNT_SID';
-const SMS_TWILIO_AUTH_TOKEN = 'YOUR_TWILIO_AUTH_TOKEN';
-const SMS_TWILIO_FROM = 'YOUR_TWILIO_PHONE_NUMBER';
-const SMS_TIMEOUT = 20;
+
+declare(strict_types=1);
+
+$localConfig = is_file(__DIR__ . '/local.php') ? require __DIR__ . '/local.php' : [];
+$smsConfig = $localConfig['sms'] ?? [];
+
+return [
+    'enabled' => filter_var(getenv('SMS_ENABLED') ?: ($smsConfig['enabled'] ?? false), FILTER_VALIDATE_BOOLEAN),
+    'environment' => getenv('SMS_ENVIRONMENT') ?: ($smsConfig['environment'] ?? 'sandbox'),
+    'username' => getenv('SMS_USERNAME') ?: ($smsConfig['username'] ?? 'sandbox'),
+    'api_key' => getenv('SMS_API_KEY') ?: ($smsConfig['api_key'] ?? ''),
+    'sender_id' => getenv('SMS_SENDER_ID') ?: ($smsConfig['sender_id'] ?? ''),
+];

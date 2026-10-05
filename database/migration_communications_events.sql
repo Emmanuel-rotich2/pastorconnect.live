@@ -1,4 +1,4 @@
-USE fgck_joyland;
+USE pastorco_fgck_joyland;
 
 CREATE TABLE IF NOT EXISTS announcements (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

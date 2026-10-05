@@ -1,4 +1,4 @@
-USE fgck_joyland;
+USE pastorco_fgck_joyland;
 
 ALTER TABLE users
     ADD COLUMN reset_code_hash VARCHAR(255) NULL AFTER password_hash,
