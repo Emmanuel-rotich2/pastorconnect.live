@@ -2173,7 +2173,7 @@ main, .main-content, .container{
 
                     <div class="brand-subtitle">
 
-                        Connected Church
+                       perfected to influence
 
                     </div>
 
