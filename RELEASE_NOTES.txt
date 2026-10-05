@@ -1,0 +1,26 @@
+FGCK JOYLAND - FINAL RELEASE REPAIR
+===================================
+
+Main repair:
+- Unified login no longer auto-redirects an existing session to the previous role's dashboard.
+- Every submitted login starts from a clean session identity.
+- Successful login routes strictly by the authenticated database role.
+- Failed login attempts cannot leave a previous Member/Staff identity active.
+- Legacy /staff/logout now uses the same secure unified logout flow.
+
+Role destinations:
+- Member: /member/dashboard
+- Pastor: /staff/dashboard
+- Church Leader: /leader/dashboard
+- Administrator: /admin/dashboard
+
+Database:
+- Existing database: pastorco_fgck_joyland
+- Do not create another database.
+- Import the required migrations from database/ as instructed in DEPLOYMENT_SETUP.txt.
+
+Validation:
+- All PHP files passed php -l syntax validation.
+- Live database authentication was not executed in this environment because the local runtime does not
+  have the MySQL PDO driver / access to the hosted database. Hosting-side login and email delivery must
+  therefore be tested after deployment.

@@ -37,12 +37,13 @@ $uq=$pdo->prepare("SELECT COUNT(*) FROM notifications WHERE user_id=? AND is_rea
             <?php if($upcomingEventCount): ?><span class="nav-count soft"><?=$upcomingEventCount?></span><?php endif; ?>
         </a>
         <a href="/staff/members" class="<?=staff_nav_active('members.php')?>"><i class="bi bi-people"></i><span>Members</span></a>
+        <a href="/staff/homepage-content" class="<?=staff_nav_active('homepage_content.php')?>"><i class="bi bi-house-heart"></i><span>Homepage Content</span></a>
         <a href="/staff/reports" class="<?=staff_nav_active('reports.php')?>"><i class="bi bi-bar-chart"></i><span>Reports & Analytics</span></a>
     </nav>
 
     <div class="sidebar-label mt-3">SYSTEM</div>
     <nav>
-        <a href="/staff/logout" class="staff-system-logout" id="pastorLogoutBtn" aria-label="Logout">
+        <a href="/auth/logout?role=pastor" class="staff-system-logout" id="pastorLogoutBtn" aria-label="Logout">
             <i class="bi bi-box-arrow-right"></i><span>Logout</span>
         </a>
         <a href="/staff/change_password" class="<?=staff_nav_active('change_password.php')?>">

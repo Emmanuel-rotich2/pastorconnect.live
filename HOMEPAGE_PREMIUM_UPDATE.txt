@@ -1,0 +1,10 @@
+FGCK JOYLAND PREMIUM HOMEPAGE UPDATE
+
+- Removed the requested "YOUR CHURCH. YOUR ROLE." role-selection section.
+- Removed the old "PERFECTED TO INFLUENCE" / generic digital-home marketing block.
+- Added a professional modern hero section.
+- Added three separate inspiration sections/cards: left, center and right.
+- Added six additional supporting inspirational messages.
+- Updated the page background with layered modern gradients and soft visual depth.
+- Added responsive mobile styling.
+- No database changes required.

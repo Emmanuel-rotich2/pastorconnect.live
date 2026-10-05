@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /**
- * FGCK Makutano West Joyland
+ * FGCK Joyland
  * Email Configuration
  *
  * Supports:
@@ -185,7 +185,7 @@ if ($fromName === false || $fromName === '') {
 
 if ($fromName === false || $fromName === '') {
     $fromName = $emailConfig['from_name']
-        ?? 'FGCK Makutano West Joyland Appointment System';
+        ?? 'FGCK Joyland Appointment System';
 }
 
 define(

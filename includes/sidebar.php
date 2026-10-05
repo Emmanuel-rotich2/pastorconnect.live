@@ -51,7 +51,7 @@ function member_nav_active($pages): string {
             <span><?=e(strtoupper(substr($member['full_name']??'M',0,1)))?></span>
             <div><b><?=e($member['full_name']??'Member')?></b><small><?=e($member['membership_no']??'')?></small></div>
         </div>
-        <a href="/auth/logout" class="logout" onclick="return confirm('Sign out of your member portal?')">
+        <a href="/auth/logout?role=member" class="logout" onclick="return confirm('Are you sure you want to logout from the Member Portal?')">
             <i class="bi bi-box-arrow-right"></i><span>Sign out</span>
         </a>
     </div>

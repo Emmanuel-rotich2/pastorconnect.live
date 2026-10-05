@@ -1,0 +1,1 @@
+30 rotating Bible verses added to the homepage encouragement cards. Verses use public-domain KJV wording. The existing 30 motivational messages remain and now each card includes a Scripture reference and verse. The same random selection runs on page load/refresh and every 12 seconds. No database changes.

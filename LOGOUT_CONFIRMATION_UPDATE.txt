@@ -1,0 +1,9 @@
+FGCK Joyland - Logout Confirmation Update
+
+All role portal logout links now ask for confirmation before signing out:
+- Member Portal
+- Pastor Portal
+- Church Leader Portal
+- Administrator Portal
+
+Clicking Cancel keeps the current session. Clicking OK proceeds with the existing role-specific logout.

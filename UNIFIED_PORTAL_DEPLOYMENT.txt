@@ -1,0 +1,52 @@
+FGCK JOYLAND - UNIFIED PORTAL DEPLOYMENT
+
+Database:
+  pastorco_fgck_joyland
+
+1. Upload/extract this project into the existing web root.
+2. In phpMyAdmin, select pastorco_fgck_joyland.
+3. Import database/migration_unified_portals.sql.
+4. Do NOT create another database.
+5. Open /auth/login. This is the single login platform.
+
+ROLE ROUTING
+  Member        -> /member/dashboard
+  Pastor        -> /staff/dashboard
+  Church Leader -> /leader/dashboard
+  Administrator -> /admin/dashboard
+
+CHURCH LEADER PERMISSIONS
+Church leaders can publish member communications and view public church events.
+They cannot use the pastor appointment/calendar/member-management workflows.
+
+PASTOR LOGIN
+Normal pastor sign-in is password-based. The email OTP/trusted-login gate is no longer used by the unified login.
+
+ADMINISTRATION
+Administrators can monitor login activity and appointment flow and register pastors/church leaders from:
+  /admin/leader_register
+
+IMPORTANT
+Change all production passwords/credentials before deployment if the uploaded project contains development credentials.
+
+ADMINISTRATOR ACCOUNT
+Run database/migration_admin_account.sql in phpMyAdmin using the existing
+pastorco_fgck_joyland database. This creates/repairs the administrator account:
+  Username: administrator
+  Password: FgckAdmin!2026#Joyland
+After signing in successfully, change the password immediately.
+
+
+ADMINISTRATOR ROLE SEPARATION
+The Administrator Portal is restricted to administrator responsibilities: staff account control, pastor/church-leader registration, member-account administration, security/login auditing and appointment oversight.
+Pastor pages under /staff/* are now pastor-only and reject administrator sessions. Church Leader pages under /leader/* remain church-leader-only. This prevents role crossover even when a user manually enters another portal URL.
+
+
+CHURCH LEADER WORKFLOWS
+After importing the unified portal migration, import database/migration_leader_workflows.sql into the same existing database pastorco_fgck_joyland.
+This enables Church Leader appointments with the Pastor and keeps those bookings visible in the Pastor/Admin appointment workflows.
+Church Leaders can also create church events, send member communications, receive Pastor messages and receive portal/email notifications.
+
+EMAIL HEALTH
+Administrator -> Email Health can send a live test using the same email delivery path used by registration, appointments, events and communications.
+If a notification is not received, use Email Health first and review the recent email log before changing application code.

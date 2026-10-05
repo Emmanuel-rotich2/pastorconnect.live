@@ -34,33 +34,87 @@ function verify_csrf():void{if(!hash_equals($_SESSION['csrf']??'',$_POST['csrf']
 function member_required():void
 {
     global $pdo;
-    if (empty($_SESSION['member_id'])) redirect('/auth/login');
+    if (empty($_SESSION['member_id'])) redirect('/auth/login?role=member');
     if (!current_member($pdo)) {
-        $_SESSION = [];
-        session_destroy();
-        redirect('/auth/login');
+        unset($_SESSION['member_id']);
+        redirect('/auth/login?role=member');
     }
 }
-function staff_required():void
+
+// Each staff role has its own session slot. This allows a Pastor, Church Leader
+// and Administrator to remain signed in at the same time in different tabs or
+// browser windows without one login replacing another.
+function staff_session_key(string $role):string
+{
+    return match ($role) {
+        'pastor' => 'pastor_id',
+        'church_leader' => 'leader_id',
+        'admin' => 'admin_id',
+        default => 'staff_id',
+    };
+}
+
+function require_staff_role(string $role, string $loginRole):void
 {
     global $pdo;
-    if (empty($_SESSION['staff_id'])) redirect('/staff/login');
+    $key = staff_session_key($role);
+    $id = (int)($_SESSION[$key] ?? 0);
 
-    // Do not trust a stale session alone: confirm the account is still active.
-    $q = $pdo->prepare("SELECT id FROM users WHERE id = ? AND status = 'active' LIMIT 1");
-    $q->execute([(int) $_SESSION['staff_id']]);
-    if (!$q->fetchColumn()) {
-        $_SESSION = [];
-        if (ini_get('session.use_cookies')) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'] ?? '', (bool) $params['secure'], (bool) $params['httponly']);
+    // Backward compatibility for sessions created by older releases.
+    if (!$id && !empty($_SESSION['staff_id'])) {
+        $legacyId = (int)$_SESSION['staff_id'];
+        $legacy = $pdo->prepare("SELECT id, role FROM users WHERE id=? AND status='active' LIMIT 1");
+        $legacy->execute([$legacyId]);
+        $legacyUser = $legacy->fetch();
+        if ($legacyUser && $legacyUser['role'] === $role) {
+            $id = $legacyId;
+            $_SESSION[$key] = $legacyId;
         }
-        session_destroy();
-        redirect('/staff/login');
     }
+
+    if (!$id) redirect('/auth/login?role='.$loginRole);
+
+    $q = $pdo->prepare("SELECT id, role FROM users WHERE id=? AND status='active' LIMIT 1");
+    $q->execute([$id]);
+    $u = $q->fetch();
+
+    if (!$u || $u['role'] !== $role) {
+        unset($_SESSION[$key]);
+        if ((int)($_SESSION['staff_id'] ?? 0) === $id) unset($_SESSION['staff_id']);
+        redirect('/auth/login?role='.$loginRole);
+    }
+
+    // Keep the legacy alias correct for existing pages. This alias is only a
+    // compatibility pointer; the role-specific session slot is authoritative.
+    $_SESSION['staff_id'] = $id;
+}
+
+function staff_required():void
+{
+    // Pastor-only workspace.
+    require_staff_role('pastor', 'pastor');
+}
+function leader_required():void
+{
+    require_staff_role('church_leader', 'church_leader');
+}
+function admin_required():void
+{
+    require_staff_role('admin', 'admin');
 }
 function current_member(PDO $p):?array{if(empty($_SESSION['member_id']))return null;$q=$p->prepare("SELECT * FROM members WHERE id=? AND status='active'");$q->execute([$_SESSION['member_id']]);return $q->fetch()?:null;}
-function current_staff(PDO $p):?array{if(empty($_SESSION['staff_id']))return null;$q=$p->prepare("SELECT * FROM users WHERE id=? AND status='active'");$q->execute([$_SESSION['staff_id']]);return $q->fetch()?:null;}
+function current_staff(PDO $p):?array{
+    $id = (int)($_SESSION['staff_id'] ?? 0);
+    if (!$id) {
+        foreach (['pastor_id','leader_id','admin_id'] as $key) {
+            if (!empty($_SESSION[$key])) { $id = (int)$_SESSION[$key]; break; }
+        }
+    }
+    if (!$id) return null;
+    $q=$p->prepare("SELECT * FROM users WHERE id=? AND status='active'");
+    $q->execute([$id]);
+    return $q->fetch()?:null;
+}
 function member(PDO $p):?array{return current_member($p);}
 function staff(PDO $p):?array{return current_staff($p);}
 function fd(string $d):string{return fmt_date($d);}
@@ -227,9 +281,10 @@ function schedule_slots(PDO $p, string $date): array
     ensure_wednesday_slots($p, $date);
     [$open, $close] = appointment_schedule($p);
 
-    $q = $p->prepare("SELECT s.*, CASE WHEN a.id IS NULL THEN 0 ELSE 1 END AS booked
+    $q = $p->prepare("SELECT s.*, CASE WHEN a.id IS NULL AND la.id IS NULL THEN 0 ELSE 1 END AS booked
         FROM appointment_slots s
         LEFT JOIN appointments a ON a.slot_id=s.id AND a.status IN ('pending','confirmed')
+        LEFT JOIN leader_appointments la ON la.slot_id=s.id AND la.status IN ('pending','confirmed')
         WHERE s.appointment_date=?
           AND s.start_time>=?
           AND s.end_time<=?
@@ -244,6 +299,8 @@ function log_activity(PDO $p,?int $mid,?int $uid,string $a,string $d=''):void{$q
 function notify_member(PDO $p,int $id,string $title,string $message,string $type='info'):void{$q=$p->prepare("INSERT INTO notifications(member_id,title,message,type) VALUES(?,?,?,?)");$q->execute([$id,$title,$message,$type]);}
 function notify_user(PDO $p,int $userId,string $title,string $message,string $type='info'):void{$q=$p->prepare("INSERT INTO notifications(user_id,title,message,type) VALUES(?,?,?,?)");$q->execute([$userId,$title,$message,$type]);}
 function notify_all_pastors(PDO $p,string $title,string $message,string $type='info'):int{$q=$p->prepare("SELECT id FROM users WHERE role='pastor' AND status='active'");$q->execute();$ids=$q->fetchAll(PDO::FETCH_COLUMN);if(!$ids)return 0;$n=$p->prepare("INSERT INTO notifications(user_id,title,message,type) VALUES(?,?,?,?)");foreach($ids as $id)$n->execute([(int)$id,$title,$message,$type]);return count($ids);}
+function notify_all_leaders(PDO $p,string $title,string $message,string $type='info'):int{$q=$p->prepare("SELECT id FROM users WHERE role='church_leader' AND status='active'");$q->execute();$ids=$q->fetchAll(PDO::FETCH_COLUMN);if(!$ids)return 0;$n=$p->prepare("INSERT INTO notifications(user_id,title,message,type) VALUES(?,?,?,?)");foreach($ids as $id)$n->execute([(int)$id,$title,$message,$type]);return count($ids);}
+
 function setting(PDO $p,string $k,string $default=''):string{$q=$p->prepare("SELECT setting_value FROM settings WHERE setting_key=?");$q->execute([$k]);return (string)($q->fetchColumn()??$default);}
 
 function unread_notification_count(PDO $p, int $memberId): int

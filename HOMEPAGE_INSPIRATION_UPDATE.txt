@@ -1,0 +1,11 @@
+FGCK JOYLAND HOMEPAGE INSPIRATION UPDATE
+
+Changes:
+- Removed the old “EVERY WEDNESDAY • 9:00 AM – 3:00 PM” hero line.
+- Replaced “One church. One community. One connected digital experience.” with a more welcoming modern headline.
+- Reworked the supporting hero copy.
+- Moved the inspirational section to appear directly after the main hero section.
+- Restyled the inspiration area as a polished, spacious card.
+- Expanded the rotating inspirational messages from 5 to 15.
+- Quotes rotate automatically every 7 seconds.
+- No database changes required.

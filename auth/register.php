@@ -289,10 +289,10 @@ require __DIR__ . '/../includes/header.php';
 
 <style>
 :root{
-    --fgck-blue:#1261a0;
-    --fgck-blue-2:#1683d8;
-    --fgck-navy:#06152b;
-    --fgck-gold:#f4c95d;
+    --fgck-blue:#6d28d9;
+    --fgck-blue-2:#8b5cf6;
+    --fgck-navy:#100b2e;
+    --fgck-gold:#f6c453;
     --fgck-text:#17263a;
     --fgck-muted:#718197;
     --fgck-border:#dce6ef;
@@ -361,7 +361,7 @@ require __DIR__ . '/../includes/header.php';
     background:
         radial-gradient(circle at 15% 12%,rgba(93,183,245,.25),transparent 28%),
         radial-gradient(circle at 90% 90%,rgba(244,201,93,.12),transparent 30%),
-        linear-gradient(145deg,#06152b 0%,#071a33 45%,#0b477b 100%);
+        radial-gradient(circle at 15% 10%,rgba(196,181,253,.20),transparent 28%),radial-gradient(circle at 90% 90%,rgba(246,196,83,.14),transparent 30%),linear-gradient(145deg,#100b2e 0%,#241254 45%,#5b21b6 100%);
 }
 .fgck-brand::before{
     content:"";
@@ -697,7 +697,7 @@ require __DIR__ . '/../includes/header.php';
                          alt="FGCK Joyland Church Logo">
                 </div>
 
-                <h1>Join <span>FGCK Joyland</span></h1>
+                <h1>Join <span>FGCK Joyland</span></h1><div style="font-size:11px;letter-spacing:2.4px;font-weight:900;color:#ffe6a1;text-transform:uppercase;margin-top:6px;">Perfected to Influence</div>
                 <div class="fgck-divider"></div>
 
                 <p>
@@ -724,7 +724,7 @@ require __DIR__ . '/../includes/header.php';
 
         <section class="fgck-form">
             <div class="fgck-heading">
-                <div class="fgck-eyebrow">Member Registration</div>
+                <div class="fgck-eyebrow">Perfected to Influence</div>
                 <h2>Create Your Account</h2>
                 <p>Enter your details below to get started with the FGCK Joyland member portal.</p>
             </div>

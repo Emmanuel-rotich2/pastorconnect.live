@@ -39,3 +39,26 @@ IMPORTANT
 - Never put a Gmail normal password in the application. Use a Google App Password.
 - Never commit real database or SMTP credentials to the ZIP or source repository.
 - The package intentionally contains no production credentials.
+
+
+CHURCH LEADER WORKFLOWS
+After importing the unified portal migration, import database/migration_leader_workflows.sql into the same existing database pastorco_fgck_joyland.
+This enables Church Leader appointments with the Pastor and keeps those bookings visible in the Pastor/Admin appointment workflows.
+Church Leaders can also create church events, send member communications, receive Pastor messages and receive portal/email notifications.
+
+EMAIL HEALTH
+Administrator -> Email Health can send a live test using the same email delivery path used by registration, appointments, events and communications.
+If a notification is not received, use Email Health first and review the recent email log before changing application code.
+
+FINAL AUTHENTICATION FIX
+========================
+The unified login page no longer redirects an existing session before the login form is processed.
+This prevents an old administrator session from hijacking a Pastor, Church Leader or Member login.
+Every submitted login attempt clears the previous role session, regenerates the session ID, and then
+creates only the authenticated role session.
+
+Use /auth/login (or /auth/login?role=member, /auth/login?role=pastor, /auth/login?role=church_leader,
+/auth/login?role=admin). The role hint does not restrict credentials; the authenticated database role
+controls the destination.
+
+After replacing the project files, sign out once or clear the browser session/cookies before the first test.

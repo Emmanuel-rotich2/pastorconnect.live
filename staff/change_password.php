@@ -4,8 +4,9 @@ staff_required();
 
 $staff = current_staff($pdo);
 if (!$staff) {
-    unset($_SESSION['staff_id']);
-    redirect('/staff/login');
+    unset($_SESSION['pastor_id']);
+    if ((int)($_SESSION['staff_id'] ?? 0) === (int)($staff['id'] ?? 0)) unset($_SESSION['staff_id']);
+    redirect('/auth/login?role=pastor');
 }
 
 $msg = '';

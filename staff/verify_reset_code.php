@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../includes/bootstrap.php';
 
-if (!empty($_SESSION['staff_id'])) {
+if (!empty($_SESSION['pastor_id'])) {
     redirect('/staff/dashboard');
 }
 

@@ -133,7 +133,7 @@ function email_html_template(
     $church = htmlspecialchars(
         defined('FGCK_RUNTIME_EMAIL_FROM_NAME')
             ? FGCK_RUNTIME_EMAIL_FROM_NAME
-            : 'FGCK Makutano West Joyland',
+            : 'FGCK Joyland',
         ENT_QUOTES,
         'UTF-8'
     );
@@ -217,7 +217,7 @@ font-size:11px;
 ">
 
 This is an automated message from the
-FGCK Makutano West Joyland appointment system.
+FGCK Joyland appointment system.
 Please do not reply to this email.
 
 </div>
@@ -403,7 +403,7 @@ function send_smtp_email(
             (int) FGCK_RUNTIME_SMTP_PORT,
             $errno,
             $errstr,
-            20
+            8
         );
 
 
@@ -421,7 +421,7 @@ function send_smtp_email(
 
         stream_set_timeout(
             $socket,
-            20
+            8
         );
 
 
@@ -772,14 +772,24 @@ function send_smtp_email(
         }
 
 
+        $smtpError = $e->getMessage();
         email_log(
             'SMTP ERROR for ' .
             $to .
             ': ' .
-            $e->getMessage()
+            $smtpError
         );
 
+        // Shared hosting may block outbound SMTP or a provider may temporarily
+        // reject authentication. Fall back to the host's configured mail()
+        // service so ordinary notifications still have a second delivery path.
+        $fallback = send_native_email($to, $toName, $subject, $html);
+        if ($fallback) {
+            email_log('HOST MAIL() FALLBACK ACCEPTED after SMTP failure for ' . $to . ' | Subject: ' . $subject);
+            return true;
+        }
 
+        email_log('EMAIL DELIVERY FAILED on both SMTP and HOST MAIL() for ' . $to . ' | Subject: ' . $subject);
         return false;
     }
 }
@@ -970,7 +980,7 @@ function email_pastors_about_booking(
 <p>
 A new appointment request has been submitted
 through the
-<b>FGCK Makutano West Joyland Appointment System</b>.
+<b>FGCK Joyland Appointment System</b>.
 </p>
 
 <table style="
@@ -1113,7 +1123,7 @@ to review and manage this appointment.
 <p >
 
 <b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Makutano West Joyland, we are
+As members of FGCK Joyland, we are
 Perfected To Influence The World
 
 </p>
@@ -1288,7 +1298,7 @@ function email_member_status_update(
 
             'completed' => [
                 'Appointment completed',
-                'Your appointment has been marked as completed. Thank you for using the FGCK Makutano West Joyland appointment service.'
+                'Your appointment has been marked as completed. Thank you for using the FGCK Joyland appointment service.'
             ],
 
             'no_show' => [
@@ -1406,7 +1416,7 @@ e(
 
 Please sign in to the
 <b>
-<a href="https://pastorconnect.live">FGCK Makutano West Joyland Member Portal</a>
+<a href="https://pastorconnect.live">FGCK Joyland Member Portal</a>
 </b>
 to view your appointment.
 
@@ -1415,7 +1425,7 @@ to view your appointment.
 <p >
 
 <b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Makutano West Joyland, we are
+As members of FGCK Joyland, we are
 Perfected To Influence The World
 
 </p>
@@ -1589,7 +1599,7 @@ e(
 <p>
 
 Please check your
-<b><a href="https://pastorconnect.live">FGCK Makutano West Joyland Member Portal</a></b>
+<b><a href="https://pastorconnect.live">FGCK Joyland Member Portal</a></b>
 for the latest schedule.
 
 </p>
@@ -1597,7 +1607,7 @@ for the latest schedule.
 <p >
 
 <b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Makutano West Joyland, we are
+As members of FGCK Joyland, we are
 Perfected To Influence The World
 
 </p>
@@ -1736,14 +1746,14 @@ nl2br(
 <p>
 
 Please sign in to the
-<b><a href="https://pastorconnect.live">FGCK Makutano West Joyland Member Portal</b>
+<b><a href="https://pastorconnect.live">FGCK Joyland Member Portal</b>
 to read the full message and stay up to date with church information.
 
 </p>
 <p >
 
 <b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Makutano West Joyland, we are
+As members of FGCK Joyland, we are
 Perfected To Influence The World
 
 </p>
@@ -1755,7 +1765,7 @@ Perfected To Influence The World
                 send_system_email(
                     (string)$m['email'],
                     (string)$m['full_name'],
-                    'FGCK Makutano West Joyland: ' .
+                    'FGCK Joyland: ' .
                     $a['title'],
                     $body
                 )
@@ -1884,7 +1894,7 @@ Please log in to the <a href="https://pastorconnect.live">Member Portal</a> for 
 <p >
 
 <b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Makutano West Joyland, we are
+As members of FGCK Joyland, we are
 Perfected To Influence The World
 
 </p>
@@ -2043,7 +2053,7 @@ to view the event and RSVP if required.
 <p >
 
 <b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Makutano West Joyland, we are
+As members of FGCK Joyland, we are
 Perfected To Influence The World
 
 </p>
@@ -2079,4 +2089,49 @@ Perfected To Influence The World
 
         return 0;
     }
+}
+// -----------------------------------------------------------------------------
+// Church Leader workflow email helpers
+// -----------------------------------------------------------------------------
+function email_pastors_about_leader_booking(PDO $p, int $appointmentId): int
+{
+    try {
+        $q=$p->prepare("SELECT la.*,u.full_name AS leader_name,u.email AS leader_email,u.phone AS leader_phone,s.appointment_date,COALESCE(la.adjusted_start_time,s.start_time) start_time,COALESCE(la.adjusted_end_time,s.end_time) end_time FROM leader_appointments la JOIN users u ON u.id=la.user_id JOIN appointment_slots s ON s.id=la.slot_id WHERE la.id=? LIMIT 1");
+        $q->execute([$appointmentId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a)return 0;
+        $pastors=$p->query("SELECT full_name,email FROM users WHERE role='pastor' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;
+        $body='<p>Hello Pastor,</p><p>A Church Leader has requested a pastoral appointment.</p><table style="width:100%;border-collapse:collapse"><tr><td><b>Leader</b></td><td>'.e($a['leader_name']).'</td></tr><tr><td><b>Email</b></td><td>'.e($a['leader_email']).'</td></tr><tr><td><b>Phone</b></td><td>'.e($a['leader_phone']?:'Not provided').'</td></tr><tr><td><b>Date</b></td><td>'.e(fmt_date($a['appointment_date'])).'</td></tr><tr><td><b>Time</b></td><td>'.e(fmt_time($a['start_time'])).' – '.e(fmt_time($a['end_time'])).'</td></tr><tr><td><b>Purpose</b></td><td>'.e($a['purpose']).'</td></tr><tr><td><b>Reference</b></td><td><b>'.e($a['appointment_no']).'</b></td></tr></table><p>Please open the Pastor Portal to review and respond.</p>';
+        foreach($pastors as $pastor){if(filter_var($pastor['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($pastor['email'],$pastor['full_name'],'New Church Leader Appointment – '.$a['appointment_no'],$body))$sent++;}
+        email_log('LEADER APPOINTMENT PASTOR EMAILS SENT: '.$sent.' for '.$a['appointment_no']);return $sent;
+    }catch(Throwable $e){email_log('LEADER APPOINTMENT PASTOR EMAIL ERROR: '.$e->getMessage());return 0;}
+}
+
+function email_leader_appointment_status(PDO $p, int $appointmentId, string $status): void
+{
+    try {
+        $q=$p->prepare("SELECT la.*,u.full_name,u.email,s.appointment_date,COALESCE(la.adjusted_start_time,s.start_time) start_time,COALESCE(la.adjusted_end_time,s.end_time) end_time FROM leader_appointments la JOIN users u ON u.id=la.user_id JOIN appointment_slots s ON s.id=la.slot_id WHERE la.id=? LIMIT 1");$q->execute([$appointmentId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a||!filter_var($a['email'],FILTER_VALIDATE_EMAIL))return;
+        $label=ucwords(str_replace('_',' ',$status));$body='<p>Hello '.e($a['full_name']).',</p><p>Your appointment request with the Pastor has been <b>'.e($label).'</b>.</p><p><b>Date:</b> '.e(fmt_date($a['appointment_date'])).'<br><b>Time:</b> '.e(fmt_time($a['start_time'])).' – '.e(fmt_time($a['end_time'])).'<br><b>Purpose:</b> '.e($a['purpose']).'<br><b>Reference:</b> '.e($a['appointment_no']).'</p><p>Please sign in to the Church Leader Portal for the latest details.</p>';
+        send_system_email($a['email'],$a['full_name'],'Pastor Appointment '.$label.' – '.$a['appointment_no'],$body);
+    }catch(Throwable $e){email_log('LEADER APPOINTMENT STATUS EMAIL ERROR: '.$e->getMessage());}
+}
+
+function email_pastors_about_event(PDO $p, int $eventId, string $status='published'): int
+{
+    try {
+        $q=$p->prepare("SELECT e.*,u.full_name AS author FROM church_events e LEFT JOIN users u ON u.id=e.user_id WHERE e.id=? LIMIT 1");$q->execute([$eventId]);$e=$q->fetch(PDO::FETCH_ASSOC);if(!$e)return 0;
+        $pastors=$p->query("SELECT full_name,email FROM users WHERE role='pastor' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;$label=ucfirst($status);
+        $body='<p>Hello Pastor,</p><p>'.e($e['author']?:'A Church Leader').' has '.e(strtolower($status)).' the church event <b>'.e($e['title']).'</b>.</p><p><b>Date:</b> '.e(fmt_date($e['event_date'])).'<br><b>Time:</b> '.e($e['start_time']?fmt_time($e['start_time']):'Not specified').' – '.e($e['end_time']?fmt_time($e['end_time']):'Not specified').'<br><b>Venue:</b> '.e($e['venue']?:'To be announced').'</p><p>Please open the Pastor Portal for the full event record.</p>';
+        foreach($pastors as $pastor){if(filter_var($pastor['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($pastor['email'],$pastor['full_name'],'Church Event '.$label.' – '.$e['title'],$body))$sent++;}
+        return $sent;
+    }catch(Throwable $ex){email_log('PASTOR EVENT EMAIL ERROR: '.$ex->getMessage());return 0;}
+}
+
+function email_leaders_about_announcement(PDO $p, int $announcementId): int
+{
+    try {
+        $q=$p->prepare("SELECT a.*,u.full_name AS pastor_name FROM announcements a JOIN users u ON u.id=a.user_id WHERE a.id=? LIMIT 1");$q->execute([$announcementId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a)return 0;
+        $leaders=$p->query("SELECT full_name,email FROM users WHERE role='church_leader' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;
+        $body='<p>Hello Church Leader,</p><p>'.e($a['pastor_name']).' has published a pastoral communication.</p><h3>'.e($a['title']).'</h3><p style="white-space:pre-wrap">'.e($a['message']).'</p><p>Please sign in to the Church Leader Portal to read and act on church communication.</p>';
+        foreach($leaders as $leader){if(filter_var($leader['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($leader['email'],$leader['full_name'],'Pastor Message – '.$a['title'],$body))$sent++;}
+        email_log('PASTOR MESSAGE LEADER EMAILS SENT: '.$sent.' for announcement '.$announcementId);return $sent;
+    }catch(Throwable $e){email_log('PASTOR MESSAGE LEADER EMAIL ERROR: '.$e->getMessage());return 0;}
 }

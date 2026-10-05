@@ -1,0 +1,27 @@
+FGCK JOYLAND — MULTI-USER / SIMULTANEOUS LOGIN FIX
+
+What changed:
+- Member, Pastor, Church Leader and Administrator sessions are now stored independently.
+- Logging in as one role no longer unsets another role's login session.
+- A Pastor login uses pastor_id.
+- A Church Leader login uses leader_id.
+- An Administrator login uses admin_id.
+- A Member login uses member_id.
+- staff_id remains only as a backward-compatible pointer for older pages.
+- Portal guards restore that pointer to the correct role before loading the page.
+- Each portal's Sign out link now logs out only that role.
+- Global /auth/logout with no role remains available as a full-session logout for legacy use.
+- No database migration is required.
+
+Deployment:
+1. Back up the current live project.
+2. Upload/extract this release and replace the project files.
+3. Do NOT create a new database and do NOT import a database migration for this fix.
+4. If PHP OPcache is enabled by the host, clear/restart it or wait for it to refresh.
+5. Test in one browser:
+   a) Log in as Pastor in one tab.
+   b) Open another tab and log in as Church Leader.
+   c) Open another tab and log in as Administrator.
+   d) Confirm each portal still works after the other logins.
+   e) Sign out of one role and confirm the other role sessions remain active.
+6. For strongest real-world isolation, different people should normally use separate devices/browsers/accounts. This release also supports multiple church roles remaining active in the same browser session.

@@ -1,0 +1,8 @@
+Dynamic Motivation Update
+
+- Added 30 inspirational messages.
+- Every page visit/refresh randomly selects 3 different messages.
+- The 3 displayed cards are unique on each selection.
+- Messages automatically reshuffle every 12 seconds while the visitor remains on the homepage.
+- No database changes required.
+- Pastor-managed Daily Quote remains separate and is not overwritten by this rotation.

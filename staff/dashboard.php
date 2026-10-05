@@ -1,7 +1,7 @@
 <?php
 require __DIR__.'/../includes/bootstrap.php';staff_required();$staff=staff($pdo);$today=date('Y-m-d');
-$q=$pdo->prepare("SELECT COUNT(*) FROM appointments a JOIN appointment_slots s ON s.id=a.slot_id WHERE s.appointment_date=? AND a.status IN('pending','confirmed')");$q->execute([$today]);$todayCount=(int)$q->fetchColumn();
-$pending=(int)$pdo->query("SELECT COUNT(*) FROM appointments WHERE status='pending'")->fetchColumn();$members=(int)$pdo->query("SELECT COUNT(*) FROM members WHERE status='active'")->fetchColumn();$completed=(int)$pdo->query("SELECT COUNT(*) FROM appointments WHERE status='completed'")->fetchColumn();$cancelled=(int)$pdo->query("SELECT COUNT(*) FROM appointments WHERE status='cancelled'")->fetchColumn();
+$q=$pdo->prepare("SELECT (SELECT COUNT(*) FROM appointments a JOIN appointment_slots s ON s.id=a.slot_id WHERE s.appointment_date=? AND a.status IN('pending','confirmed'))+(SELECT COUNT(*) FROM leader_appointments la JOIN appointment_slots s ON s.id=la.slot_id WHERE s.appointment_date=? AND la.status IN('pending','confirmed'))");$q->execute([$today,$today]);$todayCount=(int)$q->fetchColumn();
+$pending=(int)$pdo->query("SELECT (SELECT COUNT(*) FROM appointments WHERE status='pending')+(SELECT COUNT(*) FROM leader_appointments WHERE status='pending')")->fetchColumn();$members=(int)$pdo->query("SELECT COUNT(*) FROM members WHERE status='active'")->fetchColumn();$completed=(int)$pdo->query("SELECT (SELECT COUNT(*) FROM appointments WHERE status='completed')+(SELECT COUNT(*) FROM leader_appointments WHERE status='completed')")->fetchColumn();$cancelled=(int)$pdo->query("SELECT (SELECT COUNT(*) FROM appointments WHERE status='cancelled')+(SELECT COUNT(*) FROM leader_appointments WHERE status='cancelled')")->fetchColumn();
 $publishedMessages=(int)$pdo->query("SELECT COUNT(*) FROM announcements WHERE status='published'")->fetchColumn();
 $draftMessages=(int)$pdo->query("SELECT COUNT(*) FROM announcements WHERE status='draft'")->fetchColumn();
 $upcomingEventsCount=upcoming_event_count($pdo);
@@ -10,7 +10,7 @@ $recentMessages=$pdo->query("SELECT * FROM announcements WHERE status='published
 
 $q=$pdo->query("SELECT DATE_FORMAT(s.appointment_date,'%b %Y') label,DATE_FORMAT(s.appointment_date,'%Y-%m') ym,COUNT(*) total FROM appointments a JOIN appointment_slots s ON s.id=a.slot_id GROUP BY ym,label ORDER BY ym ASC LIMIT 12");$monthly=$q->fetchAll();
 $q=$pdo->query("SELECT status,COUNT(*) total FROM appointments GROUP BY status");$status=[];foreach($q as $r)$status[$r['status']]=(int)$r['total'];
-$q=$pdo->query("SELECT a.*,m.full_name,m.phone,s.appointment_date,COALESCE(a.adjusted_start_time,s.start_time) AS start_time,COALESCE(a.adjusted_end_time,s.end_time) AS end_time FROM appointments a JOIN members m ON m.id=a.member_id JOIN appointment_slots s ON s.id=a.slot_id WHERE s.appointment_date>=CURDATE() AND a.status IN('pending','confirmed') ORDER BY s.appointment_date,start_time LIMIT 8");$rows=$q->fetchAll();
+$q=$pdo->query("SELECT * FROM (SELECT a.appointment_no,a.status,a.purpose,m.full_name,m.phone,s.appointment_date,COALESCE(a.adjusted_start_time,s.start_time) start_time,'Member' person_type FROM appointments a JOIN members m ON m.id=a.member_id JOIN appointment_slots s ON s.id=a.slot_id WHERE s.appointment_date>=CURDATE() AND a.status IN('pending','confirmed') UNION ALL SELECT la.appointment_no,la.status,la.purpose,u.full_name,u.phone,s.appointment_date,COALESCE(la.adjusted_start_time,s.start_time) start_time,'Church Leader' person_type FROM leader_appointments la JOIN users u ON u.id=la.user_id JOIN appointment_slots s ON s.id=la.slot_id WHERE s.appointment_date>=CURDATE() AND la.status IN('pending','confirmed')) x ORDER BY appointment_date,start_time LIMIT 8");$rows=$q->fetchAll();
 $labels=[];$vals=[];foreach($monthly as $m){$labels[]=$m['label'];$vals[]=(int)$m['total'];}
 $line=["type"=>"line","data"=>["labels"=>$labels,"datasets"=>[["label"=>"Appointments","data"=>$vals,"tension"=>.35,"fill"=>true,"borderWidth"=>2]]],"options"=>["plugins"=>["legend"=>["display"=>false]]]];
 $donut=["type"=>"doughnut","data"=>["labels"=>['Completed','Pending','Confirmed','Cancelled','Other'],"datasets"=>[["data"=>[(int)($status['completed']??0),(int)($status['pending']??0),(int)($status['confirmed']??0),(int)($status['cancelled']??0),max(0,array_sum($status)-(int)($status['completed']??0)-(int)($status['pending']??0)-(int)($status['confirmed']??0)-(int)($status['cancelled']??0))]]],],"options"=>["plugins"=>["legend"=>["position"=>"bottom"]]]];
@@ -25,7 +25,7 @@ $page_title='Pastor Dashboard';require __DIR__.'/../includes/header.php';?>
                     <h1>Pastor Dashboard</h1>
                     <p>Live appointment operations, member activity and service insights.</p>
                 </div>
-            </div><span class="live-pill">Live operations</span>
+            </div><div class="d-flex gap-2 flex-wrap"><a href="/staff/download-members" class="btn btn-outline-primary btn-sm"><i class="bi bi-download me-1"></i>Download Members</a><span class="live-pill">Live operations</span></div>
         </header>
         <div class="content">
             <div class="welcome mb-4">

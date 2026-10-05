@@ -1,0 +1,30 @@
+FGCK JOYLAND ADMIN DASHBOARD UPGRADE
+
+Included in this release:
+1. Administrator Profile is now embedded directly in /admin/dashboard.
+   - Edit administrator full name, email and phone.
+   - Change administrator password from the dashboard.
+   - Current password is required before changing the password.
+2. Member Administration is now available directly inside the admin dashboard.
+   - Recent member accounts are shown.
+   - Activate/deactivate member accounts.
+   - Reset a member password from the dashboard.
+   - A temporary password is shown once and, when the member has a valid email,
+     the system attempts to email the temporary password.
+   - Full Member Administration remains available at /admin/members.
+3. Email Health has been strengthened.
+   - Send a real test email from /admin/email.
+   - Run a live SMTP connection/TLS handshake test without sending a message.
+   - Shows sanitized SMTP host/port/encryption status.
+   - Keeps an email activity log in storage/email.log.
+4. No new database is required for these dashboard/email changes.
+
+DEPLOYMENT
+- Back up the current project first.
+- Upload and extract this release over the existing project files.
+- Do NOT create another database.
+- Keep the existing database pastorco_fgck_joyland.
+- Verify storage/ is writable by PHP so email.log can be created/updated.
+- Sign in as administrator and open /admin/dashboard.
+- Test profile update, password change, member reset, then /admin/email.
+- On Email Health, first use Test SMTP Connection, then Send Test Email.

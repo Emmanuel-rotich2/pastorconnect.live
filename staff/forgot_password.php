@@ -5,7 +5,7 @@ require __DIR__ . '/../includes/bootstrap.php';
 require_once __DIR__ . '/../includes/email.php';
 require_once __DIR__ . '/../includes/sms.php';
 
-if (!empty($_SESSION['staff_id'])) {
+if (!empty($_SESSION['pastor_id'])) {
     redirect('/staff/dashboard');
 }
 

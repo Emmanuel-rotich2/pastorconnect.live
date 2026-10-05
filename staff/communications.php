@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             if($status==='published'){
                 $notificationType=$priority==='urgent'?'danger':($type==='prayer'||$type==='pastoral'?'info':'success');
                 $recipients=notify_all_members($pdo,$title,$message,$notificationType,$audience==='appointment_members'?'appointment_members':null);
+                $leaderRecipients=notify_all_leaders($pdo,$title,$message,$notificationType);
 
                 $sql="SELECT full_name,email FROM members WHERE status='active' AND email<>''";
                 if($audience==='appointment_members'){
@@ -42,8 +43,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 $pdo->commit();
 
                 $emails=email_members_about_announcement($pdo,$announcementId);
-                log_activity($pdo,null,(int)$staff['id'],'announcement_published','Published announcement #'.$announcementId.' to '.$recipients.' member(s). Emails sent: '.$emails);
-                $msg='Message published successfully. '.$recipients.' member notification(s) created'.($emails?' and '.$emails.' email(s) sent.':'.');
+                $leaderEmails=email_leaders_about_announcement($pdo,$announcementId);
+                log_activity($pdo,null,(int)$staff['id'],'announcement_published','Published announcement #'.$announcementId.' to '.$recipients.' member(s) and '.$leaderRecipients.' leader(s). Member emails: '.$emails.'; leader emails: '.$leaderEmails);
+                $msg='Message published successfully. '.$recipients.' member notification(s) and '.$leaderRecipients.' Church Leader notification(s) created'.($emails||$leaderEmails?' and email notifications were processed.':'.');
             }else{
                 $pdo->commit();
                 log_activity($pdo,null,(int)$staff['id'],'announcement_draft','Saved announcement draft #'.$announcementId);

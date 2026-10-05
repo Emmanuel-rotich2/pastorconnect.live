@@ -1,0 +1,14 @@
+FGCK JOYLAND ROLE ROUTING FIX
+==============================
+
+The unified login now honors the role selected on the homepage role card.
+
+Pastor card: /auth/login?role=pastor -> only active users with role=pastor are accepted -> /staff/dashboard
+Church Leader card: /auth/login?role=church_leader -> /leader/dashboard
+Administrator card: /auth/login?role=admin -> /admin/dashboard
+Member card: /auth/login?role=member -> member account -> /member/dashboard
+
+If /auth/login is opened without a role parameter, the database role of the
+credentials determines the destination.
+
+No new database is required for this routing fix.
