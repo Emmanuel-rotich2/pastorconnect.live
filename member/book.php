@@ -356,6 +356,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /*
         |--------------------------------------------------------------------------
+        | Send SMS notification to active pastor(s)
+        |--------------------------------------------------------------------------
+        */
+        try {
+            $pastorSms = $pdo->query("SELECT full_name, phone FROM users WHERE role='pastor' AND status='active' AND phone IS NOT NULL AND phone <> ''")->fetchAll();
+            $smsMessage = 'Praise the Lord. FGCK Joyland: ' . $member['full_name'] . ' has booked a pastor appointment for ' . $slotLabel . '. Ref: ' . $ref . '. Please check the Pastor Portal.';
+            foreach ($pastorSms as $pastorRow) {
+                send_sms((string)$pastorRow['phone'], $smsMessage);
+            }
+        } catch (Throwable $smsError) {
+            sms_log('BOOKING SMS ERROR: ' . $smsError->getMessage());
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
         | Send email notification to pastor
         |--------------------------------------------------------------------------
         */

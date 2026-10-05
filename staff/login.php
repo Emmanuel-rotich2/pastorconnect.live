@@ -54,6 +54,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
 
                 /*
+                 * TRUSTED LOGIN WINDOW
+                 * After a successful OTP verification, the browser receives a
+                 * random trusted-login token valid for 2 hours. If that token
+                 * is still valid, the pastor can log in with the password
+                 * without receiving another OTP.
+                 */
+                $trustedCookie = $_COOKIE['fgck_staff_trusted'] ?? '';
+
+                if ($trustedCookie !== '' && preg_match('/^[a-f0-9]{64}$/', $trustedCookie)) {
+                    $trustedHash = hash('sha256', $trustedCookie);
+
+                    $trusted = $pdo->prepare("
+                        SELECT id
+                        FROM staff_trusted_logins
+                        WHERE user_id = ?
+                          AND token_hash = ?
+                          AND expires_at > NOW()
+                        LIMIT 1
+                    ");
+                    $trusted->execute([(int)$u['id'], $trustedHash]);
+
+                    if ($trusted->fetchColumn()) {
+                        session_regenerate_id(true);
+                        $_SESSION['staff_id'] = (int)$u['id'];
+                        $_SESSION['staff_otp_verified'] = true;
+                        $_SESSION['staff_login_verified_at'] = time();
+                        $_SESSION['staff_trusted_until'] = time() + 7200;
+
+                        $pdo->prepare("
+                            UPDATE users SET last_login_at = NOW() WHERE id = ?
+                        ")->execute([(int)$u['id']]);
+
+                        log_activity(
+                            $pdo, null, (int)$u['id'], 'staff_login',
+                            'Staff login using active 2-hour trusted verification'
+                        );
+
+                        redirect('/staff/dashboard');
+                    }
+                }
+
+                /*
+                 * No active trusted verification was found, so require OTP.
+                 * Remove expired trusted records for this pastor.
+                 */
+                $pdo->prepare("
+                    DELETE FROM staff_trusted_logins
+                    WHERE user_id = ? AND expires_at <= NOW()
+                ")->execute([(int)$u['id']]);
+
+                /*
                  * Remove previous OTPs
                  */
                 $delete = $pdo->prepare("

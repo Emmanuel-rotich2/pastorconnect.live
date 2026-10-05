@@ -149,6 +149,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     notify_user($pdo,(int)$staff['id'],'Appointment updated',$a['appointment_no'].' has been changed to '.str_replace('_',' ',$status).'.','info');
                     log_activity($pdo,null,$staff['id'],'appointment_status',$a['appointment_no'].' -> '.$status);
                     $pdo->commit();
+
+                    // SMS is an additional notification and never blocks the database update.
+                    try {
+                        $memberSms = $pdo->prepare("SELECT full_name, phone FROM members WHERE id=? LIMIT 1");
+                        $memberSms->execute([(int)$a['member_id']]);
+                        $memberRow = $memberSms->fetch();
+                        if ($memberRow && !empty($memberRow['phone'])) {
+                            $smsText = 'Praise the Lord ' . $memberRow['full_name'] . '. FGCK Joyland: your appointment ' . $a['appointment_no'] . ' has been ' . str_replace('_',' ',$status) . '. Please log in to your member portal for details.';
+                            send_sms((string)$memberRow['phone'], $smsText);
+                        }
+                    } catch (Throwable $smsError) {
+                        sms_log('APPOINTMENT STATUS SMS ERROR: ' . $smsError->getMessage());
+                    }
+
                     // The portal notification is immediate; email is an additional notification.
                     email_member_status_update($pdo, $id, $status);
                     $msg = $text;
