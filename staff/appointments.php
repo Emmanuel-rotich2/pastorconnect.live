@@ -48,71 +48,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
             if($kind==='member')email_member_status_update($pdo,$id,$status);else email_leader_appointment_status($pdo,$id,$status);
             $msg=$text;
         }
-<<<<<<< HEAD
     }catch(Throwable $e){if($pdo->inTransaction())$pdo->rollBack();$error=$e instanceof RuntimeException?$e->getMessage():'The appointment could not be updated.';}
-=======
-    } else {
-        $map = [
-            'confirm'  => ['confirmed','Appointment confirmed.','success'],
-            'decline'  => ['declined','Appointment declined.','warning'],
-            'complete' => ['completed','Appointment completed.','success'],
-            'cancel'   => ['cancelled','Appointment cancelled.','warning'],
-            'no_show'  => ['no_show','Appointment marked as no-show.','warning']
-        ];
-        $allowed = [
-            'pending'   => ['confirmed','declined','cancelled'],
-            'confirmed' => ['completed','no_show','cancelled']
-        ];
-
-        if (isset($map[$action])) {
-            [$status,$text,$type] = $map[$action];
-            $q = $pdo->prepare("SELECT a.*, m.id AS member_id FROM appointments a JOIN members m ON m.id=a.member_id WHERE a.id=?");
-            $q->execute([$id]);
-            $a = $q->fetch();
-
-            if (!$a) {
-                $error = 'Appointment not found.';
-            } elseif (!in_array($status, $allowed[$a['status']] ?? [], true)) {
-                $error = 'That appointment cannot be moved to the selected status.';
-            } else {
-                try {
-                    $pdo->beginTransaction();
-                    $fields = 'status=?';
-                    $params = [$status];
-                    if ($status === 'confirmed') $fields .= ',confirmed_at=NOW()';
-                    if ($status === 'completed') $fields .= ',completed_at=NOW()';
-                    if ($status === 'cancelled') $fields .= ",cancelled_by='pastor',cancelled_at=NOW()";
-                    $params[] = $id;
-                    $pdo->prepare("UPDATE appointments SET $fields WHERE id=?")->execute($params);
-                    notify_member($pdo,(int)$a['member_id'],'Appointment update',$a['appointment_no'].': '.$text,$type);
-                    notify_user($pdo,(int)$staff['id'],'Appointment updated',$a['appointment_no'].' has been changed to '.str_replace('_',' ',$status).'.','info');
-                    log_activity($pdo,null,$staff['id'],'appointment_status',$a['appointment_no'].' -> '.$status);
-                    $pdo->commit();
-
-                    // SMS is an additional notification and never blocks the database update.
-                    try {
-                        $memberSms = $pdo->prepare("SELECT full_name, phone FROM members WHERE id=? LIMIT 1");
-                        $memberSms->execute([(int)$a['member_id']]);
-                        $memberRow = $memberSms->fetch();
-                        if ($memberRow && !empty($memberRow['phone'])) {
-                            $smsText = 'Praise the Lord ' . $memberRow['full_name'] . '. FGCK Joyland: your appointment ' . $a['appointment_no'] . ' has been ' . str_replace('_',' ',$status) . '. Please log in to your member portal for details.';
-                            send_sms((string)$memberRow['phone'], $smsText);
-                        }
-                    } catch (Throwable $smsError) {
-                        sms_log('APPOINTMENT STATUS SMS ERROR: ' . $smsError->getMessage());
-                    }
-
-                    // The portal notification is immediate; email is an additional notification.
-                    email_member_status_update($pdo, $id, $status);
-                    $msg = $text;
-                } catch (Throwable $e) {
-                    if ($pdo->inTransaction()) $pdo->rollBack();
-                    $error = 'The appointment could not be updated.';
-                }
-            }
-        }
-    }
->>>>>>> 3095147f1de9cc3fe682800509762cfc6ea2edc1
 }
 
 $filter=$_GET['status']??'all';$valid=['all','pending','confirmed','completed','cancelled','declined','no_show'];if(!in_array($filter,$valid,true))$filter='all';
