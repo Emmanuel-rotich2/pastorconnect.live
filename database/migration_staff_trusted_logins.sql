@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 USE pastorco_fgck_joyland;
+=======
+USE fgck_joyland;
+>>>>>>> 3095147f1de9cc3fe682800509762cfc6ea2edc1
 
 CREATE TABLE IF NOT EXISTS staff_trusted_logins (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
