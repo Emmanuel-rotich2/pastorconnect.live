@@ -2277,7 +2277,7 @@ main, .main-content, .container{
   <div class="fgck-premium-hero-inner">
     <div class="fgck-premium-eyebrow">FGCK JOYLAND • CONNECT • SERVE • GROW</div>
     <h1>A connected church for a stronger community.</h1>
-    <p>Welcome to the FGCK Joyland digital experience — a trusted space designed to bring people, ministry and church life together with clarity, care and purpose.</p>
+    <p>Welcome to the FGCK Makutano-West Joyland digital experience — a trusted space designed to bring people, ministry and church life together with clarity, care and purpose.</p>
     <div class="fgck-premium-actions">
       <a href="/auth/login" class="fgck-premium-primary">Sign In to the Church Portal <span>→</span></a>
       <span class="fgck-premium-note">Secure access • Role-based experience • Built for the whole church</span>
