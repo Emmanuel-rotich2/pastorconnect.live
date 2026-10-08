@@ -797,6 +797,29 @@ function send_smtp_email(
 
 /*
 |--------------------------------------------------------------------------
+| CHURCH LEADER MESSAGE FOOTER
+|--------------------------------------------------------------------------
+*/
+function fgck_leader_message_footer(): string
+{
+    return <<<'HTML'
+<!-- FGCK_LEADER_MESSAGE_FOOTER -->
+<div style="margin:28px 0 10px;padding:20px 15px;text-align:center;font-family:Arial,Helvetica,sans-serif;border-top:1px solid #d9d9d9;">
+    <div style="font-size:12px;color:#777777;letter-spacing:0.4px;line-height:1.6;font-style:italic;">
+        As members of
+        <strong style="color:#b71c1c;font-weight:700;">FGCK Makutano-West Joyland</strong>,
+        we are
+    </div>
+    <div style="margin-top:6px;font-size:17px;font-weight:800;color:#8b0000;letter-spacing:1px;line-height:1.4;">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+    <div style="width:55px;height:2px;background:#b71c1c;margin:10px auto 0;"></div>
+</div>
+HTML;
+}
+
+/*
+|--------------------------------------------------------------------------
 | GENERIC SYSTEM EMAIL
 |--------------------------------------------------------------------------
 */
@@ -807,6 +830,12 @@ function send_system_email(
     string $subject,
     string $bodyHtml
 ): bool {
+
+    // Final safeguard: every Pastor Message email sent to Church Leaders
+    // gets the footer immediately before the email template is rendered.
+    if (stripos($subject, 'Pastor Message') === 0 && strpos($bodyHtml, '<!-- FGCK_LEADER_MESSAGE_FOOTER -->') === false) {
+        $bodyHtml .= fgck_leader_message_footer();
+    }
 
     $html =
         email_html_template(
@@ -2343,49 +2372,7 @@ function email_leaders_about_announcement(PDO $p, int $announcementId): int
         $leaders=$p->query("SELECT full_name,email FROM users WHERE role='church_leader' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);
         $sent=0;
 
-        $footer = <<<'HTML'
-<div style="
-    margin: 28px 0 10px;
-    padding: 20px 15px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    border-top: 1px solid #d9d9d9;
-">
-
-    <div style="
-        font-size: 12px;
-        color: #777777;
-        letter-spacing: 0.4px;
-        line-height: 1.6;
-        font-style: italic;
-    ">
-        As members of
-        <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Makutano-West Joyland
-        </strong>,
-        we are
-    </div>
-
-    <div style="
-        margin-top: 6px;
-        font-size: 17px;
-        font-weight: 800;
-        color: #8b0000;
-        letter-spacing: 1px;
-        line-height: 1.4;
-    ">
-        PERFECTED TO INFLUENCE THE WORLD
-    </div>
-
-    <div style="
-        width: 55px;
-        height: 2px;
-        background: #b71c1c;
-        margin: 10px auto 0;
-    "></div>
-
-</div>
-HTML;
+        $footer = fgck_leader_message_footer();
 
         $body='
 <p>Hello Church Leader,</p>
