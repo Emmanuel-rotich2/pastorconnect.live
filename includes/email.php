@@ -1135,7 +1135,7 @@ to review and manage this appointment.
     ">
         As members of
         <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Joyland
+            FGCK Makutano-West Joyland 
         </strong>,
         we are
     </div>
@@ -1473,7 +1473,7 @@ to view your appointment.
     ">
         As members of
         <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Joyland
+            FGCK Makutano-West Joyland
         </strong>,
         we are
     </div>
@@ -1689,7 +1689,7 @@ for the latest schedule.
     ">
         As members of
         <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Joyland
+            FGCK Makutano-West Joyland
         </strong>,
         we are
     </div>
@@ -1870,7 +1870,7 @@ to read the full message and stay up to date with church information.
     ">
         As members of
         <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Joyland
+            FGCK Makutano-West Joyland
         </strong>,
         we are
     </div>
@@ -2047,7 +2047,7 @@ Please log in to the <a href="https://pastorconnect.live">Member Portal</a> for 
     ">
         As members of
         <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Joyland
+            FGCK Makutano-West Joyland
         </strong>,
         we are
     </div>
@@ -2240,7 +2240,7 @@ to view the event and RSVP if required.
     ">
         As members of
         <strong style="color:#b71c1c; font-weight:700;">
-            FGCK Joyland
+            FGCK Makutano-West Joyland
         </strong>,
         we are
     </div>

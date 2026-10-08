@@ -197,7 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     '<div style="margin:26px 0 8px;padding:16px 18px;background:#fff8e6;border-left:4px solid #d9a514;border-radius:8px;text-align:center;">' .
 
     '<p style="margin:0;color:#17263a;font-size:14px;font-style:italic;font-weight:700;">' .
-    'As members of FGCK Joyland, we are' .
+    'As members of FGCK Makutano-West Joyland, we are' .
     '<br>' .
     '<span style="color:#1261a0;font-size:17px;font-weight:800;letter-spacing:.3px;">' .
     '“Perfected To Influence The World”' .
