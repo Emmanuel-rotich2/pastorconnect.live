@@ -2289,20 +2289,51 @@ main, .main-content, .container{
 
 </nav>
 
-<section id="home" class="fgck-premium-hero" aria-label="FGCK Joyland welcome">
+<section id="home" class="fgck-premium-hero" aria-label="Welcome to FGCK Makutano-West Joyland">
+
   <div class="fgck-premium-orb fgck-orb-one"></div>
   <div class="fgck-premium-orb fgck-orb-two"></div>
+
   <div class="fgck-premium-hero-inner">
-    <div class="fgck-premium-eyebrow">FGCK JOYLAND • CONNECT • SERVE • GROW</div>
-    <h1>A connected church for a stronger community.</h1>
-    <p>Welcome to the FGCK Makutano-West Joyland digital experience — a trusted space designed to bring people, ministry and church life together with clarity, care and purpose.</p>
-    <div class="fgck-premium-actions">
-      <a href="/auth/login" class="fgck-premium-primary">Sign In to the Church Portal <span>→</span></a>
-      <span class="fgck-premium-note">Secure access • Role-based experience • Built for the whole church</span>
+
+    <div class="fgck-premium-eyebrow">
+      FGCK MAKUTANO-WEST JOYLAND • FAITH • FELLOWSHIP • SERVICE
     </div>
+
+    <h1>
+      A Place to <span>Know God</span>, Grow in Faith & Serve with Purpose.
+    </h1>
+
+    <p>
+      Welcome to <strong>FGCK Makutano-West Joyland</strong> — a family of
+      believers committed to knowing Christ, growing together, serving others,
+      and sharing the love of God with our community. 
+      <br><br>
+      <em>“But seek first the kingdom of God and His righteousness...”</em>
+      <strong>Matthew 6:33</strong>
+    </p>
+
+    <div class="fgck-premium-actions">
+
+      <a href="/auth/login" class="fgck-premium-primary">
+        Enter the Church Portal
+        <span>→</span>
+      </a>
+
+      <a href="#about" class="fgck-premium-secondary">
+        Discover Joyland
+        <span>↓</span>
+      </a>
+
+    </div>
+
+    <div class="fgck-premium-note">
+      <span>✦</span>
+      Worship • Word • Fellowship • Service
+    </div>
+
   </div>
 </section>
-
 <?php if($homepageMission || $homepageVision || $homepageMotto || $homepageTheme || $homepageQuote || $homepageQuoteImage): ?>
 <section id="our-church" class="fgck-pastor-content" aria-label="Church message">
   <div class="fgck-pastor-content-head">
