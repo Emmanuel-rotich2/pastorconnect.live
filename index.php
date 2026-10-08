@@ -2354,7 +2354,7 @@ main, .main-content, .container{
   <div class="fgck-three-heading">
     <span>DAILY ENCOURAGEMENT</span>
     <h2 style="color: #007bff;">Words to strengthen your faith and inspire your journey.</h2>
-    <p class="fgck-random-note">A fresh encouragement and Bible verse are selected every time you visit or refresh this page.</p>
+
   </div>
 
   <div class="fgck-inspiration-grid">
