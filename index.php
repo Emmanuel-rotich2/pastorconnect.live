@@ -2147,6 +2147,24 @@ main, .main-content, .container{
   .fgck-modern-encouragement{padding:24px 18px;margin-bottom:25px}
   .fgck-modern-section{padding:0 16px;margin-bottom:38px}
 }
+
+
+/* =========================================================
+   SOCIAL MEDIA FOOTER
+========================================================= */
+.social-footer{margin:0 auto 18px;text-align:center}
+.social-footer-title{margin-bottom:12px;color:#dbeafe;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.social-footer-links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px}
+.social-footer-link{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:13px;color:#fff!important;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 20px rgba(0,0,0,.15);font-size:18px;transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease}
+.social-footer-link:hover{color:#fff!important;transform:translateY(-3px);background:rgba(139,92,246,.35);border-color:rgba(246,196,83,.55);box-shadow:0 12px 26px rgba(0,0,0,.24)}
+.social-footer-link.whatsapp:hover{background:rgba(37,211,102,.22)}
+.social-footer-link.facebook:hover{background:rgba(24,119,242,.25)}
+.social-footer-link.instagram:hover{background:rgba(225,48,108,.22)}
+.social-footer-link.youtube:hover{background:rgba(255,0,0,.22)}
+.social-footer-link.tiktok:hover{background:rgba(0,0,0,.28)}
+.social-footer-link.email:hover{background:rgba(246,196,83,.22)}
+@media(max-width:575.98px){.social-footer{margin-bottom:16px}.social-footer-title{font-size:10px}.social-footer-links{gap:8px}.social-footer-link{width:40px;height:40px;border-radius:11px;font-size:16px}}
+
 </style>
 </head>
 
@@ -2619,13 +2637,64 @@ main, .main-content, .container{
      FOOTER
 ========================================================= -->
 
-<footer
-    class="landing-footer"
->
+<footer class="landing-footer">
 
-    <div
-        class="container"
-    >
+    <div class="container">
+
+        <!-- SOCIAL MEDIA HANDLES -->
+        <div class="social-footer">
+
+            <div class="social-footer-title">
+                Connect With FGCK Joyland
+            </div>
+
+            <div class="social-footer-links">
+
+                <!-- Replace these example links with the church's official accounts -->
+
+                <a href="https://facebook.com/fgckjoyland"
+                   class="social-footer-link facebook"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="FGCK Joyland on Facebook" title="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="https://instagram.com/fgckjoyland"
+                   class="social-footer-link instagram"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="FGCK Joyland on Instagram" title="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+
+                <a href="https://youtube.com/@fgckjoyland"
+                   class="social-footer-link youtube"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="FGCK Joyland on YouTube" title="YouTube">
+                    <i class="bi bi-youtube"></i>
+                </a>
+
+                <a href="https://tiktok.com/@fgckjoyland"
+                   class="social-footer-link tiktok"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="FGCK Joyland on TikTok" title="TikTok">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+
+                <a href="https://wa.me/"
+                   class="social-footer-link whatsapp"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="FGCK Joyland on WhatsApp" title="WhatsApp">
+                    <i class="bi bi-whatsapp"></i>
+                </a>
+
+                <a href="mailto:"
+                   class="social-footer-link email"
+                   aria-label="Email FGCK Joyland" title="Email">
+                    <i class="bi bi-envelope-fill"></i>
+                </a>
+
+            </div>
+        </div>
 
         © 2026 FGCK Joyland. All rights reserved.
 
@@ -2633,9 +2702,7 @@ main, .main-content, .container{
 
         Powered by
 
-        <strong>
-            @MylesHubTechnologies
-        </strong>
+        <strong>@MylesHubTechnologies</strong>
 
     </div>
 
