@@ -1118,15 +1118,49 @@ Please log in to the
 to review and manage this appointment.
 
 </p>
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
+
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Joyland
+        </strong>,
+        we are
+    </div>
+
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
 
 
-<p >
-
-<b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Joyland, we are
-Perfected To Influence The World
-
-</p>
 ';
 
 
@@ -1422,13 +1456,47 @@ to view your appointment.
 
 </p> 
 
-<p >
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
 
-<b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Joyland, we are
-Perfected To Influence The World
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Joyland
+        </strong>,
+        we are
+    </div>
 
-</p>
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
 ';
 
 
@@ -1604,13 +1672,48 @@ for the latest schedule.
 
 </p>
 
-<p >
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
 
-<b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Joyland, we are
-Perfected To Influence The World
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Joyland
+        </strong>,
+        we are
+    </div>
 
-</p>
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
+
 ';
 
 
@@ -1750,11 +1853,47 @@ Please sign in to the
 to read the full message and stay up to date with church information.
 
 </p>
-<p >
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
 
-<b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Joyland, we are
-Perfected To Influence The World
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Joyland
+        </strong>,
+        we are
+    </div>
+
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
 
 </p>
 ';
@@ -1891,13 +2030,47 @@ e(
 <p>
 Please log in to the <a href="https://pastorconnect.live">Member Portal</a> for the latest church updates.
 </p>
-<p >
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
 
-<b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Joyland, we are
-Perfected To Influence The World
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Joyland
+        </strong>,
+        we are
+    </div>
 
-</p>
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
 ';
         } else {
 
@@ -2050,13 +2223,47 @@ Please log in to the
 to view the event and RSVP if required.
 
 </p>
-<p >
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
 
-<b style="color:red; font-size:14px;front-style:italic;">
-As members of FGCK Joyland, we are
-Perfected To Influence The World
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Joyland
+        </strong>,
+        we are
+    </div>
 
-</p>
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
 ';
         }
 
