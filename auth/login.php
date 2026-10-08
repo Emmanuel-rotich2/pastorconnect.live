@@ -135,13 +135,13 @@ require __DIR__ . '/../includes/header.php';
   </section>
   <section class="unified-form">
    <span class="eyebrow">Perfected to Influence</span><h2>Welcome back</h2>
-   <p class="muted">Use one account to access the church platform. Your role determines the portal and services available to you — automatically and securely.</p>
+   <p class="muted">Use one account to access the church platform. Your role determines the portal and services available to you </p>
    <?php if($error): ?><div class="login-alert"><i class="bi bi-exclamation-circle-fill me-2"></i><?=e($error)?></div><?php endif; ?>
    <form method="post" autocomplete="on">
     <input type="hidden" name="csrf" value="<?=e(csrf_token())?>">
     <div class="field"><label for="identity">Email, username, phone or membership number</label><input id="identity" name="identity" value="<?=e($_POST['identity']??'')?>" autocomplete="username" required></div>
     <div class="field"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required></div>
-    <button class="login-btn" type="submit"><i class="bi bi-box-arrow-in-right me-2"></i>Sign in securely</button>
+    <button class="login-btn" type="submit"><i class="bi bi-box-arrow-in-right me-2"></i>Sign in</button>
     <div class="security"><i class="bi bi-shield-lock-fill me-1"></i> Protected access · automatic role routing · designed for members, pastors, leaders and administrators.</div>
     <div class="role-strip"><span><i class="bi bi-person-check"></i> Members</span><span><i class="bi bi-heart"></i> Pastors</span><span><i class="bi bi-megaphone"></i> Leaders</span><span><i class="bi bi-speedometer2"></i> Admins</span></div>
    </form>

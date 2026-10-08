@@ -2170,14 +2170,6 @@ main, .main-content, .container{
 
 
 <body class="landing">
-
-
-
-
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
-
 <nav class="landing-nav">
 
     <div class="container">
