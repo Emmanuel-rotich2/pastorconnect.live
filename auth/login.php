@@ -127,7 +127,7 @@ require __DIR__ . '/../includes/header.php';
 </style>
 <div class="unified-auth">
  <div class="unified-card">
- ```html
+ 
 <section class="unified-brand text-center">
 
     <!-- Church Logo -->
@@ -403,7 +403,6 @@ require __DIR__ . '/../includes/header.php';
 }
 
 </style>
-```
 
   <section class="unified-form">
    <span class="eyebrow">Perfected to Influence</span><h2>Welcome back</h2>
