@@ -128,27 +128,281 @@ require __DIR__ . '/../includes/header.php';
 <div class="unified-auth">
  <div class="unified-card">
  ```html
-<section class="unified-brand">
+<section class="unified-brand text-center">
+
+    <!-- Church Logo -->
     <div class="unified-logo">
-        <img src="/assets/images/full_gospel_churches_logo.png" alt="FGCK Joyland">
+        <img
+            src="/assets/images/full_gospel_churches_logo.png"
+            alt="Full Gospel Churches of Kenya - FGCK Joyland"
+        >
     </div>
 
-    <h1>FGCK Joyland</h1>
+    <!-- Church Name -->
+    <h1 class="unified-title">
+        FGCK <span>Joyland</span>
+    </h1>
 
-    <div style="font-size:11px;letter-spacing:2.4px;font-weight:900;color:#ffe6a1;text-transform:uppercase;">
-        Perfected to Influence
+    <!-- Motto -->
+    <div class="unified-motto">
+        <span class="motto-line"></span>
+        <span>Perfected to Influence</span>
+        <span class="motto-line"></span>
     </div>
 
-    <p>
-        Welcome to FGCK Joyland — a trusted digital home for our church family,
-        created to connect, care, communicate, and serve with purpose.
+    <!-- Welcome Message -->
+    <p class="unified-description">
+        A trusted digital home for the FGCK Joyland family —
+        connecting people, strengthening fellowship, nurturing care,
+        and making ministry and service easier for everyone.
     </p>
 
+    <!-- Church Mission Badge -->
     <div class="unified-badge">
-        <i class="bi bi-shield-check me-1"></i>
-        Connect. Grow. Serve. Together.
+        <i class="bi bi-heart-fill me-2"></i>
+        Connecting Hearts. Strengthening Faith. Serving God.
     </div>
+
 </section>
+
+
+<style>
+
+/* =========================================================
+   FGCK JOYLAND — UNIFIED BRAND
+   ========================================================= */
+
+.unified-brand {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 10px 20px 25px;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   CHURCH LOGO
+   ========================================================= */
+
+.unified-logo {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 3px solid rgba(255, 214, 120, 0.85);
+    border-radius: 50%;
+
+    padding: 10px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.20),
+        0 0 0 7px rgba(255, 255, 255, 0.06);
+}
+
+.unified-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+/* =========================================================
+   CHURCH NAME
+   ========================================================= */
+
+.unified-title {
+    margin: 0;
+
+    font-size: clamp(2rem, 5vw, 3.2rem);
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    letter-spacing: -1px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.unified-title span {
+    color: #ffd875;
+}
+
+
+/* =========================================================
+   MOTTO
+   ========================================================= */
+
+.unified-motto {
+    margin: 15px auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #ffe6a1;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 2.8px;
+
+    text-transform: uppercase;
+}
+
+.motto-line {
+    width: 35px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 230, 161, 0.9)
+    );
+}
+
+.motto-line:last-child {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 230, 161, 0.9),
+        transparent
+    );
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.unified-description {
+    max-width: 570px;
+
+    margin: 0 auto 22px;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   CHURCH MISSION BADGE
+   ========================================================= */
+
+.unified-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border: 1px solid rgba(255, 230, 161, 0.35);
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #fff3cf;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.unified-badge i {
+    color: #ffd875;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVENESS
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+    .unified-brand {
+        padding: 5px 15px 20px;
+    }
+
+    .unified-logo {
+        width: 88px;
+        height: 88px;
+
+        padding: 8px;
+
+        margin-bottom: 15px;
+    }
+
+    .unified-title {
+        font-size: 2rem;
+    }
+
+    .unified-motto {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+        gap: 7px;
+    }
+
+    .motto-line {
+        width: 22px;
+    }
+
+    .unified-description {
+        font-size: 13.5px;
+
+        line-height: 1.65;
+
+        padding: 0 5px;
+    }
+
+    .unified-badge {
+        width: 100%;
+
+        max-width: 360px;
+
+        padding: 9px 12px;
+
+        font-size: 11px;
+
+        line-height: 1.4;
+    }
+
+}
+
+</style>
 ```
 
   <section class="unified-form">
