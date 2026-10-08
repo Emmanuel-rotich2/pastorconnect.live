@@ -158,7 +158,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'Praise The Lord <strong>' . e($n) . '</strong>,</p>' .
 
                     '<p>' .
-                    'Welcome to <strong>FGCK Makutano West Joyland</strong>! ' .
                     'We are delighted to have you join our church family. ' .
                     'Your member account has been created successfully.' .
                     '</p>' .
@@ -197,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!send_system_email(
                     $em,
                     $n,
-                    'Welcome to FGCK Makutano West Joyland',
+        
                     $welcomeBody
                 )) {
 
