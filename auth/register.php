@@ -152,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $loginUrl = rtrim(FGCK_RUNTIME_APP_URL, '/') . '/auth/login';
 
                 $welcomeBody =
+                    $welcomeBody =
     '<div style="font-family:Arial,Helvetica,sans-serif;color:#17263a;line-height:1.7;">' .
 
     '<p style="font-size:16px;margin-top:0;">' .
@@ -192,6 +193,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     '<p style="font-size:13px;color:#738195;">' .
     'May God richly bless you as you continue to grow, serve and walk with Him.' .
     '</p>' .
+
+    '<div style="margin:26px 0 8px;padding:16px 18px;background:#fff8e6;border-left:4px solid #d9a514;border-radius:8px;text-align:center;">' .
+
+    '<p style="margin:0;color:#17263a;font-size:14px;font-style:italic;font-weight:700;">' .
+    'As members of FGCK Joyland, we are' .
+    '<br>' .
+    '<span style="color:#1261a0;font-size:17px;font-weight:800;letter-spacing:.3px;">' .
+    '“Perfected To Influence The World”' .
+    '</span>' .
+    '</p>' .
+
+    '</div>' .
 
     '</div>';
 
