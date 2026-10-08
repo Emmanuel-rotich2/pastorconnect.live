@@ -152,47 +152,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $loginUrl = rtrim(FGCK_RUNTIME_APP_URL, '/') . '/auth/login';
 
                 $welcomeBody =
-                    '<div style="font-family:Arial,Helvetica,sans-serif;color:#17263a;line-height:1.7;">' .
+                    $welcomeBody =
+    '<div style="font-family:Arial,Helvetica,sans-serif;color:#17263a;line-height:1.7;">' .
 
-                    '<p style="font-size:16px;margin-top:0;">' .
-                    'Praise The Lord <strong>' . e($n) . '</strong>,</p>' .
+    '<p style="font-size:16px;margin-top:0;">' .
+    'Praise The Lord <strong>' . e($n) . '</strong>,' .
+    '</p>' .
 
-                    '<p>' .
-                    'Welcome to <strong>FGCK Makutano West Joyland</strong>! ' .
-                    'We are delighted to have you join our church family. ' .
-                    'Your member account has been created successfully.' .
-                    '</p>' .
+    '<p>' .
+    'Welcome to <strong>FGCK Makutano West Joyland</strong>! ' .
+    'We are delighted to have you join our church family. ' .
+    'Your member account has been created successfully.' .
+    '</p>' .
 
-                    '<div style="margin:24px 0;padding:20px;background:#f4f8fc;border:1px solid #dbe8f3;border-radius:14px;text-align:center;">' .
+    '<div style="margin:24px 0;padding:20px;background:#f4f8fc;border:1px solid #dbe8f3;border-radius:14px;text-align:center;">' .
 
-                    '<div style="font-size:11px;color:#738195;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;">' .
-                    'Your Membership Number' .
-                    '</div>' .
+    '<div style="font-size:11px;color:#738195;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;">' .
+    'Your Membership Number' .
+    '</div>' .
 
-                    '<div style="font-size:22px;font-weight:800;color:#1261a0;letter-spacing:1px;">' .
-                    e($mem) .
-                    '</div>' .
+    '<div style="font-size:22px;font-weight:800;color:#1261a0;letter-spacing:1px;">' .
+    e($mem) .
+    '</div>' .
 
-                    '</div>' .
+    '</div>' .
 
-                    '<p>' .
-                    'You can now access your Member Portal using the email address and password you selected during registration.' .
-                    '</p>' .
+    '<p>' .
+    'You can now access your Member Portal using the email address and password you selected during registration.' .
+    '</p>' .
 
-                    '<div style="text-align:center;margin:28px 0;">' .
+    '<div style="text-align:center;margin:28px 0;">' .
 
-                    '<a href="' . e($loginUrl) . '" ' .
-                    'style="display:inline-block;padding:13px 23px;background:#1261a0;color:#ffffff;text-decoration:none;border-radius:9px;font-weight:700;">' .
-                    'Open Member Portal' .
-                    '</a>' .
+    '<a href="' . e($loginUrl) . '" ' .
+    'style="display:inline-block;padding:13px 23px;background:#1261a0;color:#ffffff;text-decoration:none;border-radius:9px;font-weight:700;">' .
+    'Open Member Portal' .
+    '</a>' .
 
-                    '</div>' .
+    '</div>' .
 
-                    '<p style="font-size:13px;color:#738195;">' .
-                    'May God richly bless you as you continue to grow, serve and walk with Him.' .
-                    '</p>' .
+    '<p style="font-size:13px;color:#738195;">' .
+    'May God richly bless you as you continue to grow, serve and walk with Him.' .
+    '</p>' .
 
-                    '</div>';
+    '<div style="margin:26px 0 8px;padding:16px 18px;background:#fff8e6;border-left:4px solid #d9a514;border-radius:8px;text-align:center;">' .
+
+    '<p style="margin:0;color:#17263a;font-size:14px;font-style:italic;font-weight:700;">' .
+    'As members of FGCK Joyland, we are' .
+    '<br>' .
+    '<span style="color:#1261a0;font-size:17px;font-weight:800;letter-spacing:.3px;">' .
+    '“Perfected To Influence The World”' .
+    '</span>' .
+    '</p>' .
+
+    '</div>' .
+
+    '</div>';
 
                 if (!send_system_email(
                     $em,
