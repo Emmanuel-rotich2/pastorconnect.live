@@ -2320,11 +2320,7 @@ main, .main-content, .container{
         <span>→</span>
       </a>
 
-      <a href="#about" class="fgck-premium-secondary">
-        Discover Joyland
-        <span>↓</span>
-      </a>
-
+  
     </div>
 
     <div class="fgck-premium-note">
