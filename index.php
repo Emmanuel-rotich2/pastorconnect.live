@@ -2353,7 +2353,7 @@ main, .main-content, .container{
 <section id="inspiration" class="fgck-three-inspiration" aria-label="Inspirational messages">
   <div class="fgck-three-heading">
     <span>DAILY ENCOURAGEMENT</span>
-    <h2>Words to strengthen your faith and inspire your journey.</h2>
+    <h2 style="color: #007bff;">Words to strengthen your faith and inspire your journey.</h2>
     <p class="fgck-random-note">A fresh encouragement and Bible verse are selected every time you visit or refresh this page.</p>
   </div>
 
@@ -2650,7 +2650,6 @@ main, .main-content, .container{
 
             <div class="social-footer-links">
 
-                <!-- Replace these example links with the church's official accounts -->
 
                 <a href="https://facebook.com/fgckjoyland"
                    class="social-footer-link facebook"
