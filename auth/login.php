@@ -164,6 +164,38 @@ require __DIR__ . '/../includes/header.php';
     </div>
 
 </section>
+
+
+<style>
+
+/* =========================================================
+   FGCK JOYLAND — UNIFIED BRAND
+   ========================================================= */
+
+
+.unified-description {
+    max-width: 570px;
+
+    margin: 0 auto 22px;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   CHURCH MISSION BADGE
+   ========================================================= */
+
+
+
+</style>
+
   <section class="unified-form">
    <span class="eyebrow">Perfected to Influence</span><h2>Welcome back</h2>
    <p class="muted">Use one account to access the church platform. Your role determines the portal and services available to you </p>
