@@ -144,11 +144,55 @@ function email_html_template(
         'UTF-8'
     );
 
+    /*
+     * Central church identity/signature.
+     * Keeping this here means every email sent through send_system_email()
+     * receives the same professional FGCK Joyland message automatically.
+     */
+    $churchSignature = '
+<div style="
+    margin:30px 0 0;
+    padding:20px 18px;
+    text-align:center;
+    background:#fff8f8;
+    border:1px solid #f1d6d6;
+    border-radius:12px;
+">
+    <div style="
+        margin:0 0 8px;
+        font-size:11px;
+        line-height:1.4;
+        font-weight:700;
+        letter-spacing:1.4px;
+        text-transform:uppercase;
+        color:#8b0000;
+    ">
+        FGCK JOYLAND
+    </div>
+
+    <div style="
+        margin:0;
+        font-size:15px;
+        line-height:1.6;
+        font-weight:700;
+        font-style:italic;
+        color:#b71c1c;
+    ">
+        As members of FGCK Joyland, we are
+        <br>
+        <span style="
+            font-size:16px;
+            font-weight:800;
+            letter-spacing:.25px;
+        ">
+            Perfected To Influence The World
+        </span>
+    </div>
+</div>';
+
     return '
 <!doctype html>
-
-<html>
-
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -164,6 +208,7 @@ color:#172b3a;
 ">
 
 <div style="
+width:100%;
 max-width:680px;
 margin:30px auto;
 background:#ffffff;
@@ -172,33 +217,33 @@ border-radius:18px;
 overflow:hidden;
 ">
 
+<!-- Email Header -->
 <div style="
 background:#102a43;
 color:#ffffff;
-padding:24px 28px;
+padding:25px 28px;
 ">
 
 <div style="
 font-size:20px;
+line-height:1.35;
 font-weight:700;
 ">
-
 ' . $safeTitle . '
-
 </div>
 
 <div style="
 font-size:12px;
+line-height:1.5;
 color:#d7e6f1;
-margin-top:5px;
+margin-top:6px;
 ">
-
 ' . $church . '
-
 </div>
 
 </div>
 
+<!-- Email Content -->
 <div style="
 padding:28px;
 line-height:1.65;
@@ -207,28 +252,29 @@ font-size:14px;
 
 ' . $bodyHtml . '
 
+' . $churchSignature . '
+
 </div>
 
+<!-- Email Footer -->
 <div style="
 padding:18px 28px;
 background:#f7fafc;
 color:#718096;
 font-size:11px;
+line-height:1.6;
+text-align:center;
 ">
-
-This is an automated message from the
-FGCK Joyland appointment system.
+This is an automated message from the<br>
+FGCK Joyland Appointment System.<br>
 Please do not reply to this email.
-
 </div>
 
 </div>
 
 </body>
-
 </html>';
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -1120,49 +1166,6 @@ to review and manage this appointment.
 </p>
 
 
-<p style="
-    margin: 24px 0 8px;
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-    background: linear-gradient(135deg, #f8f9ff, #fffaf0);
-    border-left: 4px solid #d4af37;
-    border-radius: 8px;
-">
-    <span style="
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 4px;
-    ">
-        Our Vision
-    </span>
-
-    <strong style="
-        display: block;
-        color: #b22222;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: 700;
-    ">
-        “Perfected To Influence The World”
-    </strong>
-
-    <span style="
-        display: block;
-        margin-top: 5px;
-        font-size: 13px;
-        color: #555;
-    ">
-        As members of <strong style="color:#1d3557;">FGCK Joyland</strong>, we are
-        called to reflect Christ and positively influence the world.
-    </span>
-</p>
 ';
 
 
@@ -1458,49 +1461,6 @@ to view your appointment.
 
 </p> 
 
-<p style="
-    margin: 24px 0 8px;
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-    background: linear-gradient(135deg, #f8f9ff, #fffaf0);
-    border-left: 4px solid #d4af37;
-    border-radius: 8px;
-">
-    <span style="
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 4px;
-    ">
-        Our Vision
-    </span>
-
-    <strong style="
-        display: block;
-        color: #b22222;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: 700;
-    ">
-        “Perfected To Influence The World”
-    </strong>
-
-    <span style="
-        display: block;
-        margin-top: 5px;
-        font-size: 13px;
-        color: #555;
-    ">
-        As members of <strong style="color:#1d3557;">FGCK Joyland</strong>, we are
-        called to reflect Christ and positively influence the world.
-    </span>
-</p>
 ';
 
 
@@ -1676,50 +1636,6 @@ for the latest schedule.
 
 </p>
 
-<p >
-<p style="
-    margin: 24px 0 8px;
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-    background: linear-gradient(135deg, #f8f9ff, #fffaf0);
-    border-left: 4px solid #d4af37;
-    border-radius: 8px;
-">
-    <span style="
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 4px;
-    ">
-        Our Vision
-    </span>
-
-    <strong style="
-        display: block;
-        color: #b22222;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: 700;
-    ">
-        “Perfected To Influence The World”
-    </strong>
-
-    <span style="
-        display: block;
-        margin-top: 5px;
-        font-size: 13px;
-        color: #555;
-    ">
-        As members of <strong style="color:#1d3557;">FGCK Joyland</strong>, we are
-        called to reflect Christ and positively influence the world.
-    </span>
-</p>
 ';
 
 
@@ -1859,51 +1775,6 @@ Please sign in to the
 to read the full message and stay up to date with church information.
 
 </p>
-<p >
-
-<p style="
-    margin: 24px 0 8px;
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-    background: linear-gradient(135deg, #f8f9ff, #fffaf0);
-    border-left: 4px solid #d4af37;
-    border-radius: 8px;
-">
-    <span style="
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 4px;
-    ">
-        Our Vision
-    </span>
-
-    <strong style="
-        display: block;
-        color: #b22222;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: 700;
-    ">
-        “Perfected To Influence The World”
-    </strong>
-
-    <span style="
-        display: block;
-        margin-top: 5px;
-        font-size: 13px;
-        color: #555;
-    ">
-        As members of <strong style="color:#1d3557;">FGCK Joyland</strong>, we are
-        called to reflect Christ and positively influence the world.
-    </span>
-</p>
 ';
 
         foreach ($members as $m) {
@@ -2037,49 +1908,6 @@ e(
 
 <p>
 Please log in to the <a href="https://pastorconnect.live">Member Portal</a> for the latest church updates.
-</p>
-<p style="
-    margin: 24px 0 8px;
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-    background: linear-gradient(135deg, #f8f9ff, #fffaf0);
-    border-left: 4px solid #d4af37;
-    border-radius: 8px;
-">
-    <span style="
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 4px;
-    ">
-        Our Vision
-    </span>
-
-    <strong style="
-        display: block;
-        color: #b22222;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: 700;
-    ">
-        “Perfected To Influence The World”
-    </strong>
-
-    <span style="
-        display: block;
-        margin-top: 5px;
-        font-size: 13px;
-        color: #555;
-    ">
-        As members of <strong style="color:#1d3557;">FGCK Joyland</strong>, we are
-        called to reflect Christ and positively influence the world.
-    </span>
 </p>
 ';
         } else {
@@ -2232,49 +2060,6 @@ Please log in to the
 <b><a href="https://pastorconnect.live">Member Portal</a></b>
 to view the event and RSVP if required.
 
-</p>
-<p style="
-    margin: 24px 0 8px;
-    padding: 14px 20px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #555;
-    background: linear-gradient(135deg, #f8f9ff, #fffaf0);
-    border-left: 4px solid #d4af37;
-    border-radius: 8px;
-">
-    <span style="
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: #777;
-        margin-bottom: 4px;
-    ">
-        Our Vision
-    </span>
-
-    <strong style="
-        display: block;
-        color: #b22222;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: 700;
-    ">
-        “Perfected To Influence The World”
-    </strong>
-
-    <span style="
-        display: block;
-        margin-top: 5px;
-        font-size: 13px;
-        color: #555;
-    ">
-        As members of <strong style="color:#1d3557;">FGCK Joyland</strong>, we are
-        called to reflect Christ and positively influence the world.
-    </span>
 </p>
 ';
         }
