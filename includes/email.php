@@ -2335,10 +2335,86 @@ function email_pastors_about_event(PDO $p, int $eventId, string $status='publish
 function email_leaders_about_announcement(PDO $p, int $announcementId): int
 {
     try {
-        $q=$p->prepare("SELECT a.*,u.full_name AS pastor_name FROM announcements a JOIN users u ON u.id=a.user_id WHERE a.id=? LIMIT 1");$q->execute([$announcementId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a)return 0;
-        $leaders=$p->query("SELECT full_name,email FROM users WHERE role='church_leader' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;
-        $body='<p>Hello Church Leader,</p><p>'.e($a['pastor_name']).' has published a pastoral communication.</p><h3>'.e($a['title']).'</h3><p style="white-space:pre-wrap">'.e($a['message']).'</p><p>Please sign in to the Church Leader Portal to read and act on church communication.</p>';
-        foreach($leaders as $leader){if(filter_var($leader['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($leader['email'],$leader['full_name'],'Pastor Message – '.$a['title'],$body))$sent++;}
-        email_log('PASTOR MESSAGE LEADER EMAILS SENT: '.$sent.' for announcement '.$announcementId);return $sent;
-    }catch(Throwable $e){email_log('PASTOR MESSAGE LEADER EMAIL ERROR: '.$e->getMessage());return 0;}
+        $q=$p->prepare("SELECT a.*,u.full_name AS pastor_name FROM announcements a JOIN users u ON u.id=a.user_id WHERE a.id=? LIMIT 1");
+        $q->execute([$announcementId]);
+        $a=$q->fetch(PDO::FETCH_ASSOC);
+        if(!$a)return 0;
+
+        $leaders=$p->query("SELECT full_name,email FROM users WHERE role='church_leader' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);
+        $sent=0;
+
+        $footer = <<<'HTML'
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
+
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Makutano-West Joyland
+        </strong>,
+        we are
+    </div>
+
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+
+</div>
+HTML;
+
+        $body='
+<p>Hello Church Leader,</p>
+
+<p>'.e($a['pastor_name']).' has published a pastoral communication.</p>
+
+<h3>'.e($a['title']).'</h3>
+
+<p style="white-space:pre-wrap">'.e($a['message']).'</p>
+
+<p>Please sign in to the <b>Church Leader Portal</b> to read and act on church communication.</p>
+' . $footer;
+
+        foreach($leaders as $leader){
+            if(
+                filter_var($leader['email'],FILTER_VALIDATE_EMAIL) &&
+                send_system_email(
+                    $leader['email'],
+                    $leader['full_name'],
+                    'Pastor Message – '.$a['title'],
+                    $body
+                )
+            )$sent++;
+        }
+
+        email_log('PASTOR MESSAGE LEADER EMAILS SENT: '.$sent.' for announcement '.$announcementId);
+        return $sent;
+    }catch(Throwable $e){
+        email_log('PASTOR MESSAGE LEADER EMAIL ERROR: '.$e->getMessage());
+        return 0;
+    }
 }
