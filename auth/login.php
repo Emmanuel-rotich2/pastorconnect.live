@@ -127,43 +127,30 @@ require __DIR__ . '/../includes/header.php';
 </style>
 <div class="unified-auth">
  <div class="unified-card">
-<section class="unified-brand text-center">
-
-    <!-- Church Logo -->
-    <div class="unified-logo mb-3">
-        <img
-            src="/assets/images/full_gospel_churches_logo.png"
-            alt="Full Gospel Churches of Kenya - FGCK Joyland"
-            class="img-fluid"
-        >
+ ```html
+<section class="unified-brand">
+    <div class="unified-logo">
+        <img src="/assets/images/full_gospel_churches_logo.png" alt="FGCK Joyland">
     </div>
 
-    <!-- Church Name -->
-    <h1 class="unified-title">
-        FGCK <span>Joyland</span>
-    </h1>
+    <h1>FGCK Joyland</h1>
 
-    <!-- Vision / Motto -->
-    <div class="unified-motto">
-        <span class="motto-line"></span>
-        <span>Perfected to Influence</span>
-        <span class="motto-line"></span>
+    <div style="font-size:11px;letter-spacing:2.4px;font-weight:900;color:#ffe6a1;text-transform:uppercase;">
+        Perfected to Influence
     </div>
 
-    <!-- Welcome Message -->
-    <p class="unified-description">
-        A trusted digital home for the FGCK Joyland family — connecting
-        people, strengthening fellowship, nurturing care, and making
-        ministry and service easier for everyone.
+    <p>
+        Welcome to FGCK Joyland — a trusted digital home for our church family,
+        created to connect, care, communicate, and serve with purpose.
     </p>
 
-    <!-- Portal Badge -->
     <div class="unified-badge">
-        <i class="bi bi-shield-check me-2"></i>
-        One Church. One Community. One Trusted Portal.
+        <i class="bi bi-shield-check me-1"></i>
+        Connect. Grow. Serve. Together.
     </div>
-
 </section>
+```
+
   <section class="unified-form">
    <span class="eyebrow">Perfected to Influence</span><h2>Welcome back</h2>
    <p class="muted">Use one account to access the church platform. Your role determines the portal and services available to you </p>
