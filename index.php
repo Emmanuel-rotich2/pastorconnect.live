@@ -2288,9 +2288,7 @@ main, .main-content, .container{
 
   <div class="fgck-premium-hero-inner">
 
-    <h1>
-      A Place to <span>Know God</span>, Grow in Faith & Serve with Purpose.
-    </h1>
+   
 
     <p>
       Welcome to <strong>FGCK Makutano-West Joyland</strong> — a family of
