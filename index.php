@@ -2288,10 +2288,6 @@ main, .main-content, .container{
 
   <div class="fgck-premium-hero-inner">
 
-    <div class="fgck-premium-eyebrow">
-      FGCK MAKUTANO-WEST JOYLAND • FAITH • FELLOWSHIP • SERVICE
-    </div>
-
     <h1>
       A Place to <span>Know God</span>, Grow in Faith & Serve with Purpose.
     </h1>
@@ -2314,11 +2310,7 @@ main, .main-content, .container{
 
   
     </div>
-<br>
-    <div class="fgck-premium-note">
-      <span>✦</span>
-      Worship • Word • Fellowship • Service
-    </div>
+
 
   </div>
 </section>
