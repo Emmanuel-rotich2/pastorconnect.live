@@ -1927,6 +1927,8 @@ to read the full message and stay up to date with church information.
 </p>
 ';
 
+        $body = fgck_append_leader_email_footer($body);
+
         foreach ($members as $m) {
 
             if (
@@ -2297,6 +2299,8 @@ to view the event and RSVP if required.
         }
 
 
+        $body = fgck_append_leader_email_footer($body);
+
         foreach ($members as $m) {
 
             if (
@@ -2327,6 +2331,62 @@ to view the event and RSVP if required.
     }
 }
 // -----------------------------------------------------------------------------
+
+/**
+ * Standard FGCK Makutano-West Joyland footer for leader-workflow emails.
+ * Applied immediately before sending so leader emails always carry the church identity.
+ */
+function fgck_leader_email_footer(): string
+{
+    return <<<'HTML'
+<div style="
+    margin: 28px 0 10px;
+    padding: 20px 15px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-top: 1px solid #d9d9d9;
+">
+    <div style="
+        font-size: 12px;
+        color: #777777;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+        font-style: italic;
+    ">
+        As members of
+        <strong style="color:#b71c1c; font-weight:700;">
+            FGCK Makutano-West Joyland
+        </strong>,
+        we are
+    </div>
+    <div style="
+        margin-top: 6px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #8b0000;
+        letter-spacing: 1px;
+        line-height: 1.4;
+    ">
+        PERFECTED TO INFLUENCE THE WORLD
+    </div>
+    <div style="
+        width: 55px;
+        height: 2px;
+        background: #b71c1c;
+        margin: 10px auto 0;
+    "></div>
+</div>
+HTML;
+}
+
+function fgck_append_leader_email_footer(string $body): string
+{
+    if (stripos($body, 'PERFECTED TO INFLUENCE THE WORLD') !== false) {
+        return $body;
+    }
+    return rtrim($body) . "\n" . fgck_leader_email_footer();
+}
+
 // Church Leader workflow email helpers
 // -----------------------------------------------------------------------------
 function email_pastors_about_leader_booking(PDO $p, int $appointmentId): int
@@ -2335,7 +2395,7 @@ function email_pastors_about_leader_booking(PDO $p, int $appointmentId): int
         $q=$p->prepare("SELECT la.*,u.full_name AS leader_name,u.email AS leader_email,u.phone AS leader_phone,s.appointment_date,COALESCE(la.adjusted_start_time,s.start_time) start_time,COALESCE(la.adjusted_end_time,s.end_time) end_time FROM leader_appointments la JOIN users u ON u.id=la.user_id JOIN appointment_slots s ON s.id=la.slot_id WHERE la.id=? LIMIT 1");
         $q->execute([$appointmentId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a)return 0;
         $pastors=$p->query("SELECT full_name,email FROM users WHERE role='pastor' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;
-        $body='<p>Hello Pastor,</p><p>A Church Leader has requested a pastoral appointment.</p><table style="width:100%;border-collapse:collapse"><tr><td><b>Leader</b></td><td>'.e($a['leader_name']).'</td></tr><tr><td><b>Email</b></td><td>'.e($a['leader_email']).'</td></tr><tr><td><b>Phone</b></td><td>'.e($a['leader_phone']?:'Not provided').'</td></tr><tr><td><b>Date</b></td><td>'.e(fmt_date($a['appointment_date'])).'</td></tr><tr><td><b>Time</b></td><td>'.e(fmt_time($a['start_time'])).' – '.e(fmt_time($a['end_time'])).'</td></tr><tr><td><b>Purpose</b></td><td>'.e($a['purpose']).'</td></tr><tr><td><b>Reference</b></td><td><b>'.e($a['appointment_no']).'</b></td></tr></table><p>Please open the Pastor Portal to review and respond.</p>';
+        $body='<p>Hello Pastor,</p><p>A Church Leader has requested a pastoral appointment.</p><table style="width:100%;border-collapse:collapse"><tr><td><b>Leader</b></td><td>'.e($a['leader_name']).'</td></tr><tr><td><b>Email</b></td><td>'.e($a['leader_email']).'</td></tr><tr><td><b>Phone</b></td><td>'.e($a['leader_phone']?:'Not provided').'</td></tr><tr><td><b>Date</b></td><td>'.e(fmt_date($a['appointment_date'])).'</td></tr><tr><td><b>Time</b></td><td>'.e(fmt_time($a['start_time'])).' – '.e(fmt_time($a['end_time'])).'</td></tr><tr><td><b>Purpose</b></td><td>'.e($a['purpose']).'</td></tr><tr><td><b>Reference</b></td><td><b>'.e($a['appointment_no']).'</b></td></tr></table><p>Please open the Pastor Portal to review and respond.</p>'; $body=fgck_append_leader_email_footer($body);
         foreach($pastors as $pastor){if(filter_var($pastor['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($pastor['email'],$pastor['full_name'],'New Church Leader Appointment – '.$a['appointment_no'],$body))$sent++;}
         email_log('LEADER APPOINTMENT PASTOR EMAILS SENT: '.$sent.' for '.$a['appointment_no']);return $sent;
     }catch(Throwable $e){email_log('LEADER APPOINTMENT PASTOR EMAIL ERROR: '.$e->getMessage());return 0;}
@@ -2345,7 +2405,7 @@ function email_leader_appointment_status(PDO $p, int $appointmentId, string $sta
 {
     try {
         $q=$p->prepare("SELECT la.*,u.full_name,u.email,s.appointment_date,COALESCE(la.adjusted_start_time,s.start_time) start_time,COALESCE(la.adjusted_end_time,s.end_time) end_time FROM leader_appointments la JOIN users u ON u.id=la.user_id JOIN appointment_slots s ON s.id=la.slot_id WHERE la.id=? LIMIT 1");$q->execute([$appointmentId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a||!filter_var($a['email'],FILTER_VALIDATE_EMAIL))return;
-        $label=ucwords(str_replace('_',' ',$status));$body='<p>Hello '.e($a['full_name']).',</p><p>Your appointment request with the Pastor has been <b>'.e($label).'</b>.</p><p><b>Date:</b> '.e(fmt_date($a['appointment_date'])).'<br><b>Time:</b> '.e(fmt_time($a['start_time'])).' – '.e(fmt_time($a['end_time'])).'<br><b>Purpose:</b> '.e($a['purpose']).'<br><b>Reference:</b> '.e($a['appointment_no']).'</p><p>Please sign in to the Church Leader Portal for the latest details.</p>';
+        $label=ucwords(str_replace('_',' ',$status));$body='<p>Hello '.e($a['full_name']).',</p><p>Your appointment request with the Pastor has been <b>'.e($label).'</b>.</p><p><b>Date:</b> '.e(fmt_date($a['appointment_date'])).'<br><b>Time:</b> '.e(fmt_time($a['start_time'])).' – '.e(fmt_time($a['end_time'])).'<br><b>Purpose:</b> '.e($a['purpose']).'<br><b>Reference:</b> '.e($a['appointment_no']).'</p><p>Please sign in to the Church Leader Portal for the latest details.</p>'; $body=fgck_append_leader_email_footer($body);
         send_system_email($a['email'],$a['full_name'],'Pastor Appointment '.$label.' – '.$a['appointment_no'],$body);
     }catch(Throwable $e){email_log('LEADER APPOINTMENT STATUS EMAIL ERROR: '.$e->getMessage());}
 }
@@ -2355,7 +2415,7 @@ function email_pastors_about_event(PDO $p, int $eventId, string $status='publish
     try {
         $q=$p->prepare("SELECT e.*,u.full_name AS author FROM church_events e LEFT JOIN users u ON u.id=e.user_id WHERE e.id=? LIMIT 1");$q->execute([$eventId]);$e=$q->fetch(PDO::FETCH_ASSOC);if(!$e)return 0;
         $pastors=$p->query("SELECT full_name,email FROM users WHERE role='pastor' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;$label=ucfirst($status);
-        $body='<p>Hello Pastor,</p><p>'.e($e['author']?:'A Church Leader').' has '.e(strtolower($status)).' the church event <b>'.e($e['title']).'</b>.</p><p><b>Date:</b> '.e(fmt_date($e['event_date'])).'<br><b>Time:</b> '.e($e['start_time']?fmt_time($e['start_time']):'Not specified').' – '.e($e['end_time']?fmt_time($e['end_time']):'Not specified').'<br><b>Venue:</b> '.e($e['venue']?:'To be announced').'</p><p>Please open the Pastor Portal for the full event record.</p>';
+        $body='<p>Hello Pastor,</p><p>'.e($e['author']?:'A Church Leader').' has '.e(strtolower($status)).' the church event <b>'.e($e['title']).'</b>.</p><p><b>Date:</b> '.e(fmt_date($e['event_date'])).'<br><b>Time:</b> '.e($e['start_time']?fmt_time($e['start_time']):'Not specified').' – '.e($e['end_time']?fmt_time($e['end_time']):'Not specified').'<br><b>Venue:</b> '.e($e['venue']?:'To be announced').'</p><p>Please open the Pastor Portal for the full event record.</p>'; $body=fgck_append_leader_email_footer($body);
         foreach($pastors as $pastor){if(filter_var($pastor['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($pastor['email'],$pastor['full_name'],'Church Event '.$label.' – '.$e['title'],$body))$sent++;}
         return $sent;
     }catch(Throwable $ex){email_log('PASTOR EVENT EMAIL ERROR: '.$ex->getMessage());return 0;}
@@ -2364,6 +2424,7 @@ function email_pastors_about_event(PDO $p, int $eventId, string $status='publish
 function email_leaders_about_announcement(PDO $p, int $announcementId): int
 {
     try {
+<<<<<<< HEAD
         $q=$p->prepare("SELECT a.*,u.full_name AS pastor_name FROM announcements a JOIN users u ON u.id=a.user_id WHERE a.id=? LIMIT 1");
         $q->execute([$announcementId]);
         $a=$q->fetch(PDO::FETCH_ASSOC);
@@ -2404,4 +2465,12 @@ function email_leaders_about_announcement(PDO $p, int $announcementId): int
         email_log('PASTOR MESSAGE LEADER EMAIL ERROR: '.$e->getMessage());
         return 0;
     }
+=======
+        $q=$p->prepare("SELECT a.*,u.full_name AS pastor_name FROM announcements a JOIN users u ON u.id=a.user_id WHERE a.id=? LIMIT 1");$q->execute([$announcementId]);$a=$q->fetch(PDO::FETCH_ASSOC);if(!$a)return 0;
+        $leaders=$p->query("SELECT full_name,email FROM users WHERE role='church_leader' AND status='active' AND email<>''")->fetchAll(PDO::FETCH_ASSOC);$sent=0;
+        $body='<p>Hello Church Leader,</p><p>'.e($a['pastor_name']).' has published a pastoral communication.</p><h3>'.e($a['title']).'</h3><p style="white-space:pre-wrap">'.e($a['message']).'</p><p>Please sign in to the Church Leader Portal to read and act on church communication.</p>'; $body=fgck_append_leader_email_footer($body);
+        foreach($leaders as $leader){if(filter_var($leader['email'],FILTER_VALIDATE_EMAIL)&&send_system_email($leader['email'],$leader['full_name'],'Pastor Message – '.$a['title'],$body))$sent++;}
+        email_log('PASTOR MESSAGE LEADER EMAILS SENT: '.$sent.' for announcement '.$announcementId);return $sent;
+    }catch(Throwable $e){email_log('PASTOR MESSAGE LEADER EMAIL ERROR: '.$e->getMessage());return 0;}
+>>>>>>> 4551c97 (commut)
 }
