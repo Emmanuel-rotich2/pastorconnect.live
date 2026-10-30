@@ -416,7 +416,7 @@ require __DIR__ . '/../includes/header.php';
     <div class="security"><i class="bi bi-shield-lock-fill me-1"></i> Protected access · automatic role routing · designed for members, pastors, leaders and administrators.</div>
     <div class="role-strip"><span><i class="bi bi-person-check"></i> Members</span><span><i class="bi bi-heart"></i> Pastors</span><span><i class="bi bi-megaphone"></i> Leaders</span><span><i class="bi bi-speedometer2"></i> Admins</span></div>
    </form>
-   <div class="help-links"><a href="/auth/register"><i class="bi bi-person-plus me-1"></i>New to the church portal? Register</a><a href="/"><i class="bi bi-house me-1"></i>Church home</a></div>
+   <div class="help-links"><a href="/auth/register"><i class="bi bi-person-plus me-1"></i>New to the church portal? Register</a><span><?php if ($selected_role === 'member' || $selected_role === ''): ?><a href="/auth/member_forgot_password"><i class="bi bi-key me-1"></i>Forgot password?</a><?php endif; ?> <a href="/"><i class="bi bi-house ms-2 me-1"></i>Church home</a></span></div>
   </section>
  </div>
 </div>

@@ -47,7 +47,11 @@ try{
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon-256.png">
 
-    <title>FGCK Joyland | perfected to influence</title>
+    <title>FGCK Makutano-West Joyland | Faith, Fellowship & Service</title>
+<meta property="og:title" content="FGCK Makutano-West Joyland">
+<meta property="og:description" content="A Christ-centred church family growing in faith, building relationships and serving our community.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index,follow">
 
 
     <!-- =====================================================
@@ -2166,6 +2170,83 @@ main, .main-content, .container{
 @media(max-width:575.98px){.social-footer{margin-bottom:16px}.social-footer-title{font-size:10px}.social-footer-links{gap:8px}.social-footer-link{width:40px;height:40px;border-radius:11px;font-size:16px}}
 
 </style>
+
+<style id="fgck-intelligent-homepage">
+:root{--joy-ink:#14213d;--joy-muted:#66758c;--joy-blue:#2457d6;--joy-violet:#6246d9;--joy-line:rgba(22,43,82,.10)}
+body.landing{background:#f6f8fc!important;color:var(--joy-ink)}
+.landing-nav{position:sticky!important;top:0;z-index:1050;background:rgba(12,24,54,.96)!important}
+.fgck-intelligent-hero{width:min(1380px,calc(100% - 36px));min-height:590px;margin:22px auto 0;border-radius:30px;background:linear-gradient(112deg,#0b1734 0%,#173b83 53%,#4336a7 100%);box-shadow:0 28px 70px rgba(26,48,105,.22)}
+.fgck-intelligent-hero:after{background:linear-gradient(90deg,rgba(7,17,40,.35),rgba(30,64,175,.02))!important}
+.fgck-intelligent-hero .fgck-premium-hero-inner{max-width:920px;padding:clamp(3rem,7vw,6.5rem) clamp(1.5rem,7vw,6rem)}
+.fgck-live-pill{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border:1px solid rgba(255,255,255,.23);border-radius:99px;background:rgba(255,255,255,.09);color:#e5edff;font-size:.68rem;font-weight:850;letter-spacing:.12em}
+.fgck-live-dot{width:8px;height:8px;border-radius:50%;background:#7ee7c0;box-shadow:0 0 0 5px rgba(126,231,192,.12)}
+.fgck-intelligent-hero h1{margin:25px 0 19px;font-size:clamp(2.7rem,6.1vw,5.25rem);line-height:1.02;letter-spacing:-.055em;font-weight:900}
+.fgck-intelligent-hero h1 span{color:#f8d77a}
+.fgck-intelligent-hero .fgck-hero-lead{font-size:clamp(1rem,1.5vw,1.2rem);max-width:720px;color:rgba(244,248,255,.84);line-height:1.8}
+.fgck-hero-scripture{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;color:#e8edff;font-size:.9rem}
+.fgck-hero-scripture i{color:#f8d77a;font-size:1.1rem}.fgck-hero-scripture strong{font-size:.68rem;letter-spacing:.12em;color:#f8d77a}
+.fgck-intelligent-hero .fgck-premium-actions{gap:22px}.fgck-intelligent-hero .fgck-premium-primary{gap:10px}
+.fgck-hero-secondary{color:#fff;font-weight:750;display:inline-flex;align-items:center;gap:9px}.fgck-hero-secondary:hover{color:#f8d77a}
+.fgck-hero-assurance{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;color:rgba(238,244,255,.72);font-size:.76rem}
+.fgck-hero-assurance span{display:inline-flex;align-items:center;gap:7px}.fgck-hero-assurance i{color:#8ee0c2}
+.fgck-hero-side-note{position:absolute;right:7%;bottom:14%;display:flex;align-items:center;gap:13px;color:rgba(255,255,255,.55);font-size:.67rem;font-weight:900;letter-spacing:.2em;line-height:1.7}
+.fgck-side-line{height:54px;width:2px;background:linear-gradient(#f8d77a,transparent)}
+.fgck-hero-grid{position:absolute;inset:0;opacity:.11;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(90deg,transparent,#000)}
+.fgck-access-section,.fgck-discover-section{width:min(1240px,calc(100% - 40px));margin:76px auto}
+.fgck-access-intro{text-align:center;max-width:760px;margin:0 auto 25px}
+.fgck-section-kicker{display:block;color:#5264c9;font-size:.69rem;font-weight:900;letter-spacing:.17em;margin-bottom:9px}
+.fgck-access-intro h2,.fgck-discover-heading h2{font-size:clamp(1.6rem,3vw,2.35rem);font-weight:900;letter-spacing:-.04em;color:#182744;margin:0 0 10px}
+.fgck-access-intro p{color:var(--joy-muted);line-height:1.7;margin:0}
+.fgck-access-links{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fgck-access-link{display:flex;align-items:center;gap:12px;min-width:0;padding:17px 15px;background:#fff;border:1px solid var(--joy-line);border-radius:17px;box-shadow:0 9px 26px rgba(20,40,80,.045);color:#1b2a46;transition:.2s ease}
+.fgck-access-link:hover{transform:translateY(-4px);border-color:rgba(59,91,210,.3);box-shadow:0 16px 32px rgba(20,40,80,.09);color:#1b2a46}
+.fgck-access-icon{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:13px;background:#eef2ff;color:#4d55c9;font-size:1.15rem}
+.fgck-access-link strong,.fgck-access-link small{display:block}.fgck-access-link strong{font-size:.9rem;font-weight:850}
+.fgck-access-link small{margin-top:3px;color:#78859a;font-size:.69rem;line-height:1.4}.fgck-access-link>i{margin-left:auto;color:#7b89a2}
+.fgck-access-footnote{text-align:center;color:#8792a5;font-size:.76rem;margin:17px 0 0}.fgck-access-footnote i{color:#5367d2}
+.fgck-discover-section{margin-top:82px;margin-bottom:78px}
+.fgck-discover-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}
+.fgck-site-search{display:flex;align-items:center;gap:10px;width:min(410px,100%);padding:11px 14px;border:1px solid var(--joy-line);border-radius:13px;background:#fff;color:#8792a5;box-shadow:0 7px 20px rgba(20,40,80,.04)}
+.fgck-site-search input{width:100%;border:0;outline:0;background:transparent;color:#1b2a46;font-size:.83rem}
+.fgck-site-search kbd{padding:2px 6px;border:1px solid #dbe1ed;border-radius:5px;background:#f7f8fb;font-size:.68rem}
+.fgck-discover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fgck-discover-card{display:flex;flex-direction:column;align-items:flex-start;min-height:215px;padding:24px;border:1px solid var(--joy-line);border-radius:21px;background:#fff;box-shadow:0 12px 32px rgba(20,40,80,.05);color:#1b2a46;transition:.22s ease}
+.fgck-discover-card:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(20,40,80,.1);color:#1b2a46}
+.fgck-discover-card>span{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:#eef2ff;color:#4d55c9;font-size:1.25rem;margin-bottom:17px}
+.fgck-discover-card strong{font-size:1.08rem;font-weight:900}.fgck-discover-card small{margin-top:7px;color:#718096;line-height:1.6}
+.fgck-discover-card em{margin-top:auto;padding-top:16px;color:#4d55c9;font-style:normal;font-size:.77rem;font-weight:850}
+.fgck-search-empty{padding:18px;text-align:center;color:#718096}
+.fgck-pastor-content,.fgck-pastor-content-head,.fgck-church-updates,.fgck-three-inspiration{scroll-margin-top:100px}
+.fgck-pastor-content{margin-top:75px}.fgck-church-update-card img{background:#e8edf5}.landing-footer{margin-top:80px}
+@media(max-width:1000px){.fgck-access-links{grid-template-columns:repeat(2,1fr)}.fgck-hero-side-note{right:5%;bottom:8%}}
+@media(max-width:700px){.fgck-intelligent-hero{width:calc(100% - 18px);min-height:0;margin-top:10px;border-radius:22px}.fgck-intelligent-hero .fgck-premium-hero-inner{padding:2.7rem 1.35rem}.fgck-intelligent-hero h1{font-size:clamp(2.45rem,11vw,3.5rem)}.fgck-hero-side-note{display:none}.fgck-hero-assurance{gap:10px 16px;font-size:.69rem}.fgck-access-section,.fgck-discover-section{width:calc(100% - 28px);margin:52px auto}.fgck-access-links{grid-template-columns:1fr 1fr;gap:9px}.fgck-access-link{padding:13px 10px;gap:9px}.fgck-access-icon{width:36px;height:36px;flex-basis:36px}.fgck-access-link small{font-size:.63rem}.fgck-discover-heading{align-items:stretch;flex-direction:column;gap:14px}.fgck-discover-grid{grid-template-columns:1fr}.fgck-discover-card{min-height:180px}.fgck-intelligent-hero .fgck-premium-actions{align-items:flex-start;flex-direction:column;gap:17px}}
+@media(max-width:390px){.fgck-access-links{grid-template-columns:1fr}.fgck-access-link small{font-size:.7rem}}
+@media(prefers-reduced-motion:reduce){.fgck-access-link,.fgck-discover-card{transition:none}}
+</style>
+
+
+<style id="fgck-professional-navigation">
+.landing-nav .container{max-width:1440px}
+.landing-nav>.container>.d-flex{min-height:54px;gap:22px}
+.brand-wrapper{flex:0 0 auto}
+.nav-actions.desktop-nav{display:flex;align-items:center;justify-content:flex-end;gap:11px;min-width:0;flex:1}
+.desktop-page-links{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0}
+.desktop-page-link{display:inline-flex;align-items:center;gap:7px;padding:10px 11px;border-radius:10px;color:rgba(245,248,255,.78);font-size:.79rem;font-weight:750;white-space:nowrap;transition:background .2s ease,color .2s ease,transform .2s ease}
+.desktop-page-link i{font-size:.9rem;color:#f6d681}
+.desktop-page-link:hover,.desktop-page-link:focus-visible{color:#fff;background:rgba(255,255,255,.10);transform:translateY(-1px)}
+.desktop-page-link.is-active{color:#fff;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.desktop-nav-divider{height:29px;width:1px;background:rgba(255,255,255,.19);margin:0 3px}
+.nav-actions .nav-login,.nav-actions .nav-register{min-height:41px;padding:9px 15px;border-radius:11px;font-size:.78rem;font-weight:800}
+.nav-actions .nav-login{border-color:rgba(255,255,255,.28)}
+.nav-actions .nav-register{box-shadow:0 8px 22px rgba(22,131,216,.24)}
+.homepage-mobile-nav .mobile-home-link{transition:background .18s ease,transform .18s ease}
+.homepage-mobile-nav .mobile-home-link:hover{transform:translateX(3px)}
+@media(max-width:1199.98px) and (min-width:992px){.landing-nav>.container>.d-flex{gap:12px}.desktop-page-link{padding:9px 8px;font-size:.73rem}.desktop-page-link i{display:none}.nav-actions .nav-login,.nav-actions .nav-register{padding:8px 11px}}
+@media(max-width:991.98px){.nav-actions.desktop-nav{display:none!important}.landing-nav>.container>.d-flex{min-height:48px}.brand-logo{width:45px;height:45px}}
+@media(max-width:575.98px){.landing-nav{padding:8px 0!important}.brand-name{font-size:13px}.brand-logo{width:41px;height:41px}}
+@media(prefers-reduced-motion:reduce){.desktop-page-link,.homepage-mobile-nav .mobile-home-link{transition:none}}
+</style>
+
 </head>
 
 
@@ -2217,39 +2298,21 @@ main, .main-content, .container{
 
             <!-- DESKTOP ACTIONS -->
 
-            <div
-                class="nav-actions desktop-nav"
-            >
-
-
-                <a
-                    href="/auth/login"
-                    class="btn btn-outline-light btn-sm"
-                >
-
-                    <i
-                        class="bi bi-box-arrow-in-right me-1"
-                    ></i>
-
-                    Sign In
-
-                </a>
-
-
-                <a
-                    href="/auth/register"
-                    class="btn btn-success btn-sm"
-                >
-
-                    <i
-                        class="bi bi-person-plus me-1"
-                    ></i>
-
-                    Register
-
-                </a>
-
-</div>
+            <div class="nav-actions desktop-nav" aria-label="Main navigation">
+                <nav class="desktop-page-links" aria-label="Website sections">
+                    <a class="desktop-page-link is-active" href="#home" aria-current="page"><i class="bi bi-house-door"></i><span>Home</span></a>
+                    <?php if($homepageMission || $homepageVision || $homepageMotto || $homepageTheme || $homepageQuote || $homepageQuoteImage): ?>
+                    <a class="desktop-page-link" href="#our-church"><i class="bi bi-building"></i><span>Our Church</span></a>
+                    <?php endif; ?>
+                    <?php if($homepageChurchUpdates): ?>
+                    <a class="desktop-page-link" href="#church-updates"><i class="bi bi-camera"></i><span>Church Moments</span></a>
+                    <?php endif; ?>
+                    <a class="desktop-page-link" href="#inspiration"><i class="bi bi-stars"></i><span>Inspiration</span></a>
+                </nav>
+                <span class="desktop-nav-divider" aria-hidden="true"></span>
+                <a href="/auth/login" class="btn btn-outline-light btn-sm nav-login"><i class="bi bi-box-arrow-in-right me-1"></i>Sign In</a>
+                <a href="/auth/register" class="btn btn-success btn-sm nav-register"><i class="bi bi-person-plus me-1"></i>Register</a>
+            </div>
 
 
             <!-- MOBILE MENU -->
@@ -2281,36 +2344,40 @@ main, .main-content, .container{
 
 </nav>
 
-<section id="home" class="fgck-premium-hero" aria-label="Welcome to FGCK Makutano-West Joyland">
-
-  <div class="fgck-premium-orb fgck-orb-one"></div>
-  <div class="fgck-premium-orb fgck-orb-two"></div>
-
+<main id="main-content">
+<section id="home" class="fgck-premium-hero fgck-intelligent-hero" aria-label="Welcome to FGCK Makutano-West Joyland">
+  <div class="fgck-premium-orb fgck-orb-one"></div><div class="fgck-premium-orb fgck-orb-two"></div>
+  <div class="fgck-hero-grid" aria-hidden="true"></div>
   <div class="fgck-premium-hero-inner">
-
-   
-
-    <p>
-      Welcome to <strong>FGCK Makutano-West Joyland</strong> — a family of
-      believers committed to knowing Christ, growing together, serving others,
-      and sharing the love of God with our community. 
-      <br><br>
-      <em>“But seek first the kingdom of God and His righteousness...”</em>
-      <strong>Matthew 6:33</strong>
-    </p>
-
+    <div class="fgck-live-pill"><span class="fgck-live-dot"></span> A CHURCH FAMILY • ONE CONNECTED COMMUNITY</div>
+    <h1>Faith that grows.<br><span>Love that serves.</span><br>Lives that influence.</h1>
+    <p class="fgck-hero-lead">Welcome to <strong>FGCK Makutano-West Joyland</strong> — a Christ-centred family growing in faith, building meaningful relationships, serving our community and sharing the transforming love of God.</p>
+    <div class="fgck-hero-scripture"><i class="bi bi-book-half"></i><span>“But seek first the kingdom of God and His righteousness...”</span><strong>MATTHEW 6:33</strong></div>
     <div class="fgck-premium-actions">
-
-      <a href="/auth/login" class="fgck-premium-primary">
-        Enter the Church Portal
-        <span>→</span>
-      </a>
-
-  
+      <a href="/auth/login" class="fgck-premium-primary"><i class="bi bi-box-arrow-in-right"></i> Enter the Church Portal <span>→</span></a>
+      <a href="#our-church" class="fgck-hero-secondary">Discover our church <i class="bi bi-arrow-down-right"></i></a>
     </div>
-
-
+    <div class="fgck-hero-assurance"><span><i class="bi bi-shield-check"></i> Secure access</span><span><i class="bi bi-people"></i> One church community</span><span><i class="bi bi-heart"></i> Christ-centred living</span></div>
   </div>
+  <aside class="fgck-hero-side-note" aria-label="Church motto"><span class="fgck-side-line"></span><span>PERFECTED<br>TO INFLUENCE</span></aside>
+</section>
+
+
+
+<section class="fgck-discover-section" aria-label="Explore FGCK Joyland">
+  <div class="fgck-discover-heading"><div><span class="fgck-section-kicker">EXPLORE JOYLAND</span><h2>Find what matters to you.</h2></div>
+    <label class="fgck-site-search"><i class="bi bi-search"></i><input id="fgckQuickSearch" type="search" placeholder="Search church updates, mission, inspiration..." aria-label="Search homepage sections"><kbd>/</kbd></label>
+  </div>
+  <div class="fgck-discover-grid" id="fgckDiscoverGrid">
+    <?php if($homepageMission || $homepageVision || $homepageMotto || $homepageTheme || $homepageQuote || $homepageQuoteImage): ?>
+    <a href="#our-church" class="fgck-discover-card" data-search="mission vision motto theme pastor church direction"><span><i class="bi bi-compass"></i></span><strong>Our Church</strong><small>Discover our mission, vision and direction.</small><em>Explore <i class="bi bi-arrow-right"></i></em></a>
+    <?php endif; ?>
+    <?php if($homepageChurchUpdates): ?>
+    <a href="#church-updates" class="fgck-discover-card" data-search="church pictures photos updates events pastor notes moments"><span><i class="bi bi-camera"></i></span><strong>Church Moments</strong><small>See what is happening in our church family.</small><em>View updates <i class="bi bi-arrow-right"></i></em></a>
+    <?php endif; ?>
+    <a href="#inspiration" class="fgck-discover-card" data-search="daily encouragement bible scripture inspiration faith"><span><i class="bi bi-stars"></i></span><strong>Daily Inspiration</strong><small>Find encouragement and Scripture for your journey.</small><em>Be inspired <i class="bi bi-arrow-right"></i></em></a>
+  </div>
+  <p id="fgckSearchEmpty" class="fgck-search-empty" hidden>No matching section found. Try “church”, “mission” or “inspiration”.</p>
 </section>
 <?php if($homepageMission || $homepageVision || $homepageMotto || $homepageTheme || $homepageQuote || $homepageQuoteImage): ?>
 <section id="our-church" class="fgck-pastor-content" aria-label="Church message">
@@ -2584,14 +2651,21 @@ main, .main-content, .container{
                 <i class="bi bi-chevron-right mobile-home-arrow"></i>
             </a>
 
+            <?php if($homepageMission || $homepageVision || $homepageMotto || $homepageTheme || $homepageQuote || $homepageQuoteImage): ?>
             <a href="#our-church" class="mobile-home-link">
                 <span class="mobile-home-link-icon"><i class="bi bi-building"></i></span>
-                <span>
-                    <strong>Our Church</strong>
-                    <small>Mission, vision and direction</small>
-                </span>
+                <span><strong>Our Church</strong><small>Mission, vision and direction</small></span>
                 <i class="bi bi-chevron-right mobile-home-arrow"></i>
             </a>
+            <?php endif; ?>
+
+            <?php if($homepageChurchUpdates): ?>
+            <a href="#church-updates" class="mobile-home-link">
+                <span class="mobile-home-link-icon"><i class="bi bi-camera"></i></span>
+                <span><strong>Church Moments</strong><small>Pictures and church updates</small></span>
+                <i class="bi bi-chevron-right mobile-home-arrow"></i>
+            </a>
+            <?php endif; ?>
 
             <a href="#inspiration" class="mobile-home-link">
                 <span class="mobile-home-link-icon"><i class="bi bi-stars"></i></span>
@@ -2624,23 +2698,7 @@ main, .main-content, .container{
 
 </div>
 
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
-
-<main>
-
-
-    <!-- =====================================================
-         HERO SECTION
-    ====================================================== -->
-
-
-
-
 </main>
-
-
 
 <!-- =========================================================
      FOOTER
@@ -2775,6 +2833,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Keep the three motivation panels fresh while the visitor remains on the page.
   setInterval(showFreshMotivation, 12000);
+});
+</script>
+
+
+<script id="fgck-homepage-intelligence">
+document.addEventListener('DOMContentLoaded', function () {
+  const search = document.getElementById('fgckQuickSearch');
+  const cards = Array.from(document.querySelectorAll('#fgckDiscoverGrid .fgck-discover-card'));
+  const empty = document.getElementById('fgckSearchEmpty');
+  function filterSections() {
+    if (!search) return;
+    const term = search.value.trim().toLocaleLowerCase();
+    let visible = 0;
+    cards.forEach(function (card) {
+      const haystack = (card.innerText + ' ' + (card.dataset.search || '')).toLocaleLowerCase();
+      const match = !term || haystack.includes(term);
+      card.hidden = !match;
+      if (match) visible++;
+    });
+    if (empty) empty.hidden = visible !== 0;
+  }
+  if (search) {
+    search.addEventListener('input', filterSections);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
+        event.preventDefault(); search.focus();
+      }
+      if (event.key === 'Escape' && document.activeElement === search) {
+        search.value = ''; filterSections(); search.blur();
+      }
+    });
+  }
+  document.querySelectorAll('.mobile-home-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      const panel = document.getElementById('mobileMenu');
+      if (panel && window.bootstrap) {
+        const instance = bootstrap.Offcanvas.getInstance(panel);
+        if (instance) instance.hide();
+      }
+    });
+  });
+  const desktopLinks = Array.from(document.querySelectorAll('.desktop-page-link'));
+  const observedSections = desktopLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+  if ('IntersectionObserver' in window && observedSections.length) {
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+      if (!visible) return;
+      desktopLinks.forEach(link => {
+        const active = link.getAttribute('href') === '#' + visible.target.id;
+        link.classList.toggle('is-active', active);
+        if (active) link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
+      });
+    }, {rootMargin:'-22% 0px -62% 0px',threshold:[0,.15,.35,.6]});
+    observedSections.forEach(section => observer.observe(section));
+  }
 });
 </script>
 

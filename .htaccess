@@ -17,6 +17,9 @@ RewriteRule ^(?:\.env(?:\..*)?|.*\.(?:sql|log|bak|old|orig|save|swp|tmp|ini|conf
 # Public clean routes.
 RewriteRule ^auth/login/?$ auth/login.php [L,QSA]
 RewriteRule ^auth/register/?$ auth/register.php [L,QSA]
+RewriteRule ^auth/member_forgot_password/?$ auth/member_forgot_password.php [L,QSA]
+RewriteRule ^auth/member_verify_reset/?$ auth/member_verify_reset.php [L,QSA]
+RewriteRule ^auth/member_reset_password/?$ auth/member_reset_password.php [L,QSA]
 RewriteRule ^auth/logout/?$ auth/logout.php [L,QSA]
 RewriteRule ^leader/dashboard/?$ leader/dashboard.php [L,QSA]
 RewriteRule ^leader/communications/?$ leader/communications.php [L,QSA]
